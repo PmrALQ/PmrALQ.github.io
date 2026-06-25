@@ -1,0 +1,33 @@
+{
+  "siteName": "My Website",
+  "nav": {
+    "home": "Home",
+    "blog": "Blog",
+    "about": "About"
+  },
+  "home": {
+    "hero": {
+      "greeting": "Hi, I'm",
+      "role": "Full-Stack Developer",
+      "description": "Passionate about open source and building performant web applications.",
+      "latestPosts": "Latest Posts"
+    },
+    "noPosts": "No posts yet — stay tuned!"
+  },
+  "blog": {
+    "title": "Blog",
+    "description": "Thoughts on tech and project experiences",
+    "allPosts": "All Posts",
+    "publishedOn": "Published on",
+    "readMore": "Read more",
+    "backToBlog": "← Back to Blog"
+  },
+  "about": {
+    "title": "About Me",
+    "description": "Learn more about me and my work"
+  },
+  "theme": {
+    "light": "Light",
+    "dark": "Dark"
+  }
+}

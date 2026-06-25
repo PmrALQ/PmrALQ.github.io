@@ -1,0 +1,29 @@
+# Nuxt
+.output
+.nuxt
+.data
+
+# Dependencies
+node_modules/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Env
+.env
+.env.*
+
+# Logs
+*.log
+npm-debug.log*
+
+# Content DB
+contents.sqlite
+
+# Misc
+注意事项/

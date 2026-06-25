@@ -1,0 +1,55 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Base ─────────────────────────────────────────────────────── */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-white text-gray-900 antialiased;
+    @apply dark:bg-gray-950 dark:text-gray-100;
+    @apply transition-colors duration-300;
+  }
+
+  /* Selection color */
+  ::selection {
+    @apply bg-primary-200 dark:bg-primary-800;
+  }
+}
+
+/* ── Components ───────────────────────────────────────────────── */
+@layer components {
+  /* Content link styles */
+  .prose a {
+    @apply text-primary-600 hover:text-primary-700 decoration-2 underline-offset-2;
+    @apply dark:text-primary-400 dark:hover:text-primary-300;
+  }
+
+  /* Page transition */
+  .page-enter-active,
+  .page-leave-active {
+    @apply transition-opacity duration-300;
+  }
+  .page-enter-from,
+  .page-leave-to {
+    @apply opacity-0;
+  }
+  .layout-enter-active,
+  .layout-leave-active {
+    @apply transition-opacity duration-300;
+  }
+  .layout-enter-from,
+  .layout-leave-to {
+    @apply opacity-0;
+  }
+}
+
+/* ── Utilities ────────────────────────────────────────────────── */
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}

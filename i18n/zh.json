@@ -1,0 +1,33 @@
+{
+  "siteName": "我的网站",
+  "nav": {
+    "home": "首页",
+    "blog": "博客",
+    "about": "关于"
+  },
+  "home": {
+    "hero": {
+      "greeting": "你好，我是",
+      "role": "全栈开发者",
+      "description": "热爱开源，专注于构建高性能的 Web 应用。",
+      "latestPosts": "最新文章"
+    },
+    "noPosts": "还没有文章，敬请期待！"
+  },
+  "blog": {
+    "title": "博客",
+    "description": "记录技术思考与项目经验",
+    "allPosts": "全部文章",
+    "publishedOn": "发布于",
+    "readMore": "阅读全文",
+    "backToBlog": "← 回到博客"
+  },
+  "about": {
+    "title": "关于我",
+    "description": "了解我和我的工作"
+  },
+  "theme": {
+    "light": "浅色",
+    "dark": "深色"
+  }
+}

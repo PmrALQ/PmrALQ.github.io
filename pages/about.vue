@@ -1,10 +1,7 @@
 <template>
   <div class="px-6 py-24">
     <div class="mx-auto max-w-3xl">
-      <!-- Page Hero -->
       <PageHero :title="t('about.title')" :description="t('about.description')" />
-
-      <!-- Content from markdown -->
       <article class="prose prose-gray dark:prose-invert max-w-none mt-12">
         <ContentRenderer v-if="page" :value="page" />
         <p v-else class="text-gray-500 dark:text-gray-400">
@@ -32,8 +29,6 @@ const { data: page } = await useAsyncData(
 
 useHead({
   title: t('about.title'),
-  meta: [
-    { name: 'description', content: t('about.description') },
-  ],
+  meta: [{ name: 'description', content: t('about.description') }],
 })
 </script>

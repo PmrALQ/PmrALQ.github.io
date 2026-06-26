@@ -21,7 +21,7 @@
           <div class="flex items-center justify-between gap-4 flex-wrap">
             <div class="flex-1 min-w-0">
               <div class="flex items-center gap-3 flex-wrap mb-2">
-                <time class="text-xs font-mono text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/30 px-2.5 py-1 rounded-full">
+                <time class="text-xs font-bold font-mono text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/30 px-2.5 py-1 rounded-full">
                   {{ formatDate(item.date) }}
                 </time>
                 <h3 class="text-base font-semibold text-gray-900 dark:text-white truncate">

@@ -2,7 +2,7 @@
 title: Hello, World!
 description: 属于 PmrALQ 的个人博客，今日正式上线啦！(ﾉ>ω<)ﾉ
 date: 2026-06-25
-tags: [经验总结, intro, meta]
+tags: [经验总结]
 ---
 
 # Hello, World!

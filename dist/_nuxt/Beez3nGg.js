@@ -1,1 +1,0 @@
-import{o,p as n,w as s,I as p,_}from"./Bwn8vsw9.js";const u={__name:"ProseA",props:{href:{type:String,default:""},target:{type:String,default:void 0,required:!1}},setup(e){const t=e;return(r,f)=>{const a=_;return o(),n(a,{href:t.href,target:t.target},{default:s(()=>[p(r.$slots,"default")]),_:3},8,["href","target"])}}};export{u as default};

@@ -14,7 +14,7 @@
       "role": "AI Student",
       "description": "Nice to meet you! Looking forward to your guidance ᔦ ° ꒳ ° ᔨ ̖́-"
     },
-    "latestWorks": "Featured Works",
+    "latestWorks": "Portfolio",
     "noWorks": "No works yet — stay tuned!"
   },
   "about": {
@@ -59,7 +59,7 @@
     "title": "Projects",
     "description": "My programming works and little toys",
     "allProjects": "All Projects",
-    "backToProjects": "← Back to Projects",
+    "backToProjects": "← Back to Home",
     "viewDemo": "Live Demo",
     "openFullscreen": "↗ Open Fullscreen",
     "sourceCode": "Source Code",

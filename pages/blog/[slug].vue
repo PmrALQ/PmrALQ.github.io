@@ -1,7 +1,6 @@
 <template>
   <div class="px-6 py-24">
     <div class="mx-auto max-w-3xl">
-      <!-- Back link -->
       <NuxtLink
         :to="localePath('/archive')"
         class="inline-flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 transition-colors mb-8"
@@ -9,7 +8,6 @@
         {{ t('blog.backToBlog') }}
       </NuxtLink>
 
-      <!-- Content -->
       <article class="prose prose-gray dark:prose-invert max-w-none">
         <header class="mb-10">
           <h1 class="text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-4xl !mb-4">
@@ -47,7 +45,6 @@ const route = useRoute()
 
 const slug = computed(() => route.params.slug as string)
 
-// Query content for the current locale and slug
 const { data: page } = await useAsyncData(
   `blog-${slug.value}`,
   async () => {
@@ -70,7 +67,6 @@ function formatDate(dateStr: string): string {
   })
 }
 
-// SEO
 useHead({
   title: computed(() => page.value?.title || t('blog.title')),
   meta: [

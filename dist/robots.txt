@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://PmrALQ.github.io/sitemap_index.xml

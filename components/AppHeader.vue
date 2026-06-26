@@ -6,7 +6,7 @@
       <!-- Logo / Site name -->
       <NuxtLink
         :to="localePath('/')"
-        class="text-xl font-bold tracking-tight text-gray-900 hover:text-primary-600 dark:text-white dark:hover:text-primary-400 transition-colors"
+        class="text-xl font-bold tracking-tight text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 transition-colors"
       >
         {{ t('siteName') }}
       </NuxtLink>

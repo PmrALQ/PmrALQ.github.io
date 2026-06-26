@@ -1,12 +1,21 @@
 <template>
   <div class="px-6 py-24">
     <div class="mx-auto max-w-3xl">
-      <NuxtLink
-        :to="localePath('/archive')"
-        class="inline-flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 transition-colors mb-8"
-      >
-        {{ t('blog.backToBlog') }}
-      </NuxtLink>
+      <!-- Back links -->
+      <div class="flex items-center gap-6 mb-8">
+        <NuxtLink
+          :to="localePath('/')"
+          class="inline-flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 transition-colors"
+        >
+          ← {{ t('nav.home') }}
+        </NuxtLink>
+        <NuxtLink
+          :to="localePath('/archive')"
+          class="inline-flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 transition-colors"
+        >
+          ← {{ t('nav.archive') }}
+        </NuxtLink>
+      </div>
 
       <article class="prose prose-gray dark:prose-invert max-w-none">
         <header class="mb-10">
@@ -45,8 +54,9 @@ const route = useRoute()
 
 const slug = computed(() => route.params.slug as string)
 
+// Watch both slug and locale — re-fetch when language switches
 const { data: page } = await useAsyncData(
-  `blog-${slug.value}`,
+  `blog-${slug.value}-${locale.value}`,
   async () => {
     const result = await queryCollection('content')
       .where('path', '=', `/${locale.value}/blog/${slug.value}`)

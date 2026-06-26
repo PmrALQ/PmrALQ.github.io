@@ -1,18 +1,36 @@
 {
-  "siteName": "My Website",
+  "siteName": "PmrALQ Blog",
   "nav": {
     "home": "Home",
-    "blog": "Blog",
-    "about": "About"
+    "about": "About",
+    "archive": "Archive",
+    "guestbook": "Guestbook",
+    "gallery": "Gallery",
+    "changelog": "Changelog"
   },
   "home": {
     "hero": {
       "greeting": "Hi, I'm",
-      "role": "Full-Stack Developer",
-      "description": "Passionate about open source and building performant web applications.",
-      "latestPosts": "Latest Posts"
+      "role": "First-year AI Student",
+      "description": "Passionate about coding and open source, focusing on AI and performant web applications."
     },
-    "noPosts": "No posts yet — stay tuned!"
+    "latestWorks": "Featured Works",
+    "noWorks": "No works yet — stay tuned!"
+  },
+  "about": {
+    "title": "About",
+    "description": "Learn more about me and my tech stack"
+  },
+  "archive": {
+    "title": "Archive",
+    "description": "All articles organized by date",
+    "all": "All",
+    "noPosts": "No posts yet — stay tuned!",
+    "categories": {
+      "experience": "Experience",
+      "algorithm": "Algorithms",
+      "project": "Projects"
+    }
   },
   "blog": {
     "title": "Blog",
@@ -20,11 +38,32 @@
     "allPosts": "All Posts",
     "publishedOn": "Published on",
     "readMore": "Read more",
-    "backToBlog": "← Back to Blog"
+    "backToBlog": "← Back to Archive"
   },
-  "about": {
-    "title": "About Me",
-    "description": "Learn more about me and my work"
+  "guestbook": {
+    "title": "Guestbook",
+    "description": "Leave a message",
+    "comingSoon": "Comment feature coming soon!",
+    "walineHint": "Powered by Waline — will be activated after ICP filing."
+  },
+  "gallery": {
+    "title": "Gallery",
+    "description": "Beautiful moments in life",
+    "noPhotos": "No photos yet — stay tuned!"
+  },
+  "changelog": {
+    "title": "Changelog",
+    "description": "Site version update history"
+  },
+  "projects": {
+    "title": "Projects",
+    "description": "My programming works and little toys",
+    "allProjects": "All Projects",
+    "backToProjects": "← Back to Projects",
+    "viewDemo": "Live Demo",
+    "openFullscreen": "↗ Open Fullscreen",
+    "sourceCode": "Source Code",
+    "techStack": "Tech Stack"
   },
   "theme": {
     "light": "Light",

@@ -1,14 +1,14 @@
 <template>
   <div class="px-6 py-24">
-    <div class="mx-auto max-w-5xl">
+    <div class="mx-auto max-w-3xl">
       <!-- Page Hero -->
-      <PageHero :title="t('blog.title')" :description="t('blog.description')" />
+      <PageHero :title="t('archive.title')" :description="t('archive.description')" />
 
-      <!-- Blog List -->
-      <BlogList v-if="posts && posts.length > 0" :posts="posts" />
-      <p v-else class="text-center text-gray-500 dark:text-gray-400 py-12">
-        {{ t('home.noPosts') }}
-      </p>
+      <!-- Category Filter -->
+      <CategoryFilter :active="activeCategory" @select="activeCategory = $event" />
+
+      <!-- Filtered Timeline -->
+      <ArchiveTimeline :items="filteredPosts" />
     </div>
   </div>
 </template>
@@ -16,8 +16,11 @@
 <script setup lang="ts">
 const { t, locale } = useI18n()
 
-const { data: posts } = await useAsyncData(
-  `blog-list-${locale.value}`,
+const activeCategory = ref('all')
+
+// Fetch all blog posts
+const { data: allPosts } = await useAsyncData(
+  `blog-posts-${locale.value}`,
   async () => {
     const results = await queryCollection('content')
       .where('path', 'LIKE', `/${locale.value}/blog/%`)
@@ -28,10 +31,31 @@ const { data: posts } = await useAsyncData(
   { watch: [locale] }
 )
 
+// Filter by selected category
+const filteredPosts = computed(() => {
+  const posts = allPosts.value || []
+  if (activeCategory.value === 'all') {
+    return posts.map(p => ({
+      title: p.title,
+      description: p.description,
+      date: p.date,
+      tags: p.tags,
+      link: `/blog/${(p.stem || '').split('/').pop()}`,
+    }))
+  }
+  return posts
+    .filter(p => p.tags?.includes(activeCategory.value))
+    .map(p => ({
+      title: p.title,
+      description: p.description,
+      date: p.date,
+      tags: p.tags,
+      link: `/blog/${(p.stem || '').split('/').pop()}`,
+    }))
+})
+
 useHead({
   title: t('blog.title'),
-  meta: [
-    { name: 'description', content: t('blog.description') },
-  ],
+  meta: [{ name: 'description', content: t('blog.description') }],
 })
 </script>

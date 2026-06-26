@@ -1,27 +1,36 @@
 ---
 title: About Me
-description: Learn more about me and my work
+description: Learn more about me and my tech stack
 ---
 
 # About Me
 
-## 👋 Hi there!
+## 👋 Hi!
 
-I'm a full-stack developer passionate about web technologies.
+I'm PmrALQ, a first-year AI student.
 
-## 🛠 Tech Stack
+Passionate about coding and open source, exploring the intersection of AI and web technologies.
 
-- **Frontend**: Vue.js, Nuxt, React, TypeScript
-- **Backend**: Node.js, Python, Go
-- **Infrastructure**: Docker, CI/CD, Cloud Services
+## 🛠 Skills
 
-## 📬 Get in Touch
+- **Languages**: Python, C, C++
+- **Deep Learning**: YOLO model training
+- **Robotics**: ROS basics
+- **Web**: HTML, CSS, JavaScript, Vue.js, Nuxt
 
-Feel free to reach out:
+## 🌐 This Website
 
-- GitHub: [@yourhandle](https://github.com)
-- Email: your@email.com
+Built from v0.1 to v0.2, documenting my learning journey.
+
+- **v0.1** — Static blog with Nuxt 3 + Nuxt Content, bilingual support & dark mode
+- **v0.2** — Full redesign with Archive, Guestbook, Gallery & Changelog
+
+See the [Changelog](/changelog) page for version history.
+
+## 📬 Contact
+
+- GitHub: [@PmrALQ](https://github.com/PmrALQ)
 
 ---
 
-> "Programs must be written for people to read, and only incidentally for machines to execute." — Harold Abelson
+> "Stay hungry, stay foolish." — Steve Jobs

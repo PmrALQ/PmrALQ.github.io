@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>示例游戏占位</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      display: flex; align-items: center; justify-content: center;
+      min-height: 100vh; background: linear-gradient(135deg, #e0f2fe, #bae6fd);
+      font-family: system-ui, sans-serif;
+    }
+    .placeholder {
+      text-align: center; padding: 2rem;
+    }
+    .placeholder h1 {
+      font-size: 2rem; color: #0369a1; margin-bottom: 1rem;
+    }
+    .placeholder p {
+      color: #0284c7; font-size: 1.1rem;
+    }
+    .placeholder .emoji { font-size: 4rem; margin-bottom: 1rem; }
+  </style>
+</head>
+<body>
+  <div class="placeholder">
+    <div class="emoji">🎮</div>
+    <h1>这里是你的游戏</h1>
+    <p>把游戏文件放到 <code>public/games/</code> 目录即可替换此占位内容</p>
+  </div>
+</body>
+</html>

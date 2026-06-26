@@ -1,27 +1,27 @@
 ---
 title: Hello, World!
-description: My very first blog post
+description: My first blog post
 date: 2026-06-25
-tags: [intro, meta]
+tags: [Experience, intro, meta]
 ---
 
 # Hello, World!
 
-Welcome to my blog! This is the first post on my personal website built with **Nuxt 4** + **Nuxt Content**.
+Welcome to my blog! This is the first post on my personal website built with **Nuxt 3** + **Nuxt Content**.
 
 ## About This Site
 
-This site is built with the following tech stack:
+Tech stack:
 
-- **Nuxt 4** — Vue.js full-stack framework, static generation mode
+- **Nuxt 3** — Vue.js full-stack framework, static generation
 - **Nuxt Content v3** — Markdown-driven content management
 - **Tailwind CSS** — Utility-first CSS framework
-- **@nuxtjs/i18n** — Chinese/English bilingual support
+- **@nuxtjs/i18n** — Bilingual support (Chinese / English)
 
-Dark mode and responsive design are supported, adapting to both mobile and desktop screens.
+Dark mode, responsive design, works on mobile and desktop.
 
 ## What's Next
 
-I'll be sharing thoughts and experiences on frontend development, performance optimization, open source contributions, and more.
+I'll share thoughts on frontend development, AI learning, algorithm practice, and project experiences here.
 
-Stay tuned for more content!
+Stay tuned!

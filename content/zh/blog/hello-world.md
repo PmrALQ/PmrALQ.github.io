@@ -2,18 +2,18 @@
 title: 你好，世界！
 description: 这是我的第一篇博客文章
 date: 2026-06-25
-tags: [intro, meta]
+tags: [经验总结, intro, meta]
 ---
 
 # 你好，世界！
 
-欢迎来到我的博客！这是我用 **Nuxt 4** + **Nuxt Content** 搭建的个人网站的第一篇文章。
+欢迎来到我的博客！这是我用 **Nuxt 3** + **Nuxt Content** 搭建的个人网站的第一篇文章。
 
 ## 关于这个网站
 
 这个网站采用以下技术栈构建：
 
-- **Nuxt 4** — Vue.js 全栈框架，静态生成模式
+- **Nuxt 3** — Vue.js 全栈框架，静态生成模式
 - **Nuxt Content v3** — Markdown 驱动的内容管理
 - **Tailwind CSS** — 实用优先的 CSS 框架
 - **@nuxtjs/i18n** — 中英文双语支持
@@ -22,6 +22,6 @@ tags: [intro, meta]
 
 ## 接下来的计划
 
-我会在这里分享关于前端开发、性能优化、开源贡献等方面的思考和经验。
+我会在这里分享关于前端开发、AI 学习、算法练习和项目经验。
 
 敬请期待更多内容！

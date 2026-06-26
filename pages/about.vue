@@ -8,7 +8,7 @@
       <article class="prose prose-gray dark:prose-invert max-w-none mt-12">
         <ContentRenderer v-if="page" :value="page" />
         <p v-else class="text-gray-500 dark:text-gray-400">
-          {{ t('home.noPosts') }}
+          {{ t('home.noWorks') }}
         </p>
       </article>
     </div>

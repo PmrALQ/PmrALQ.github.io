@@ -89,8 +89,11 @@ const mobileOpen = ref(false)
 
 const navLinks = [
   { to: '/', labelKey: 'nav.home' },
-  { to: '/blog', labelKey: 'nav.blog' },
   { to: '/about', labelKey: 'nav.about' },
+  { to: '/archive', labelKey: 'nav.archive' },
+  { to: '/guestbook', labelKey: 'nav.guestbook' },
+  { to: '/gallery', labelKey: 'nav.gallery' },
+  { to: '/changelog', labelKey: 'nav.changelog' },
 ]
 
 // Close mobile menu on route change

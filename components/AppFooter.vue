@@ -25,7 +25,7 @@ const localePath = useLocalePath()
 
 const footerLinks = [
   { to: '/', labelKey: 'nav.home' },
-  { to: '/blog', labelKey: 'nav.blog' },
+  { to: '/archive', labelKey: 'nav.archive' },
   { to: '/about', labelKey: 'nav.about' },
 ]
 </script>

@@ -10,9 +10,9 @@
   },
   "home": {
     "hero": {
-      "greeting": "你好，我是",
-      "role": "人工智能专业大一学生",
-      "description": "热爱编程与开源，专注于 AI 与高性能 Web 应用。"
+      "greeting": "欢迎喵，我是",
+      "role": "人工智能专业",
+      "description": "很高兴认识你！请多指教吖 ᔦ ° ꒳ ° ᔨ ̖́-"
     },
     "latestWorks": "精彩作品",
     "noWorks": "还没有作品，敬请期待！"

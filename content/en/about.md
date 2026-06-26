@@ -1,35 +1,35 @@
 ---
 title: About Me
-description: Learn more about me and my tech stack
+description: Get to know me and my tech stack
 ---
 
 # About Me
 
-## 👋 Hi!
+## Hello nya~ 🐾
 
-I'm PmrALQ, a first-year AI student.
+・Nice to meet you!  
+・I'm PmrALQ, pleased to meet you! ᔦ ° ꒳ ° ᔨ ̖́-  
 
-Passionate about coding and open source, exploring the intersection of AI and web technologies.
+・First-year student majoring in Artificial Intelligence,  
+・Passionate about programming and open source, exploring the world of computer science.
 
-## 🛠 Skills
+## Skills
 
 - **Languages**: Python, C, C++
 - **Deep Learning**: YOLO model training
-- **Robotics**: ROS basics
+- **Robotics**: Basic ROS operations
 - **Web**: HTML, CSS, JavaScript, Vue.js, Nuxt
 
-## 🌐 This Website
+## This Website
 
-Built from v0.1 to v0.2, documenting my learning journey.
+This site was initially created on June 26, 2026, to document and showcase my learning and growth.
 
-- **v0.1** — Static blog with Nuxt 3 + Nuxt Content, bilingual support & dark mode
-- **v0.2** — Full redesign with Archive, Guestbook, Gallery & Changelog
+See the [Changelog](/changelog) page for the evolution log.
 
-See the [Changelog](/changelog) page for version history.
-
-## 📬 Contact
+## Contact
 
 - GitHub: [@PmrALQ](https://github.com/PmrALQ)
+- email: 2844536840@qq.com
 
 ---
 

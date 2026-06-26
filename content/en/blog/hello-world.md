@@ -1,27 +1,31 @@
 ---
 title: Hello, World!
-description: My first blog post
+description: PmrALQ's personal blog is officially launched today! (ﾉ>ω<)ﾉ
 date: 2026-06-25
-tags: [Experience, intro, meta]
+tags: [lessons-learned, intro, meta]
 ---
 
 # Hello, World!
 
-Welcome to my blog! This is the first post on my personal website built with **Nuxt 3** + **Nuxt Content**.
+Welcome to my personal blog!  
+I'm **PmrALQ**, and I've finally finished building my personal site with **Nuxt 3** + **Nuxt Content**! ☆˶> x <˶.⁺ 
 
-## About This Site
+## About this blog's tech stack
 
-Tech stack:
-
-- **Nuxt 3** — Vue.js full-stack framework, static generation
+- **Nuxt 3** — Vue.js full-stack framework, SSG static generation mode
 - **Nuxt Content v3** — Markdown-driven content management
-- **Tailwind CSS** — Utility-first CSS framework
-- **@nuxtjs/i18n** — Bilingual support (Chinese / English)
+- **Tailwind CSS** — Say goodbye to the pain of writing raw CSS
+- **@nuxtjs/i18n** — Bilingual in Chinese and English, welcoming visitors from around the world ˶>ᗜ<˶
 
-Dark mode, responsive design, works on mobile and desktop.
+**And**:  
+One-click dark mode toggle, responsive design, adapted for both mobile and desktop — come hang out with me anytime, nya~ 🐾
 
-## What's Next
+## Upcoming main quests
 
-I'll share thoughts on frontend development, AI learning, algorithm practice, and project experiences here.
+This place won't be left to gather dust! I'll keep posting the following content:
 
-Stay tuned!
+- **Learning summaries** — pitfalls encountered and experience sharing
+- **Cutting-edge tech** — sharing project experience (#^.^#)
+- **Algorithm practice** — documenting my algorithm competition journey (???)
+
+If you find it interesting, feel free to poke me in the comments and chat! (｡- .•)

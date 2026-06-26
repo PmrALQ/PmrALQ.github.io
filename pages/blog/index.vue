@@ -14,6 +14,8 @@
 </template>
 
 <script setup lang="ts">
+import { categoryTagMap } from '~/utils/tags'
+
 const { t, locale } = useI18n()
 
 const activeCategory = ref('all')
@@ -31,27 +33,20 @@ const { data: allPosts } = await useAsyncData(
   { watch: [locale] }
 )
 
-// Filter by selected category
+// Filter by selected category (supports bilingual tags)
 const filteredPosts = computed(() => {
   const posts = allPosts.value || []
-  if (activeCategory.value === 'all') {
-    return posts.map(p => ({
-      title: p.title,
-      description: p.description,
-      date: p.date,
-      tags: p.tags,
-      link: `/blog/${(p.stem || '').split('/').pop()}`,
-    }))
-  }
-  return posts
-    .filter(p => p.tags?.includes(activeCategory.value))
-    .map(p => ({
-      title: p.title,
-      description: p.description,
-      date: p.date,
-      tags: p.tags,
-      link: `/blog/${(p.stem || '').split('/').pop()}`,
-    }))
+  const matchTags = categoryTagMap[activeCategory.value] || []
+  const filtered = activeCategory.value === 'all'
+    ? posts
+    : posts.filter(p => p.tags?.some((t: string) => matchTags.includes(t)))
+  return filtered.map(p => ({
+    title: p.title,
+    description: p.description,
+    date: p.date,
+    tags: p.tags,
+    link: `/blog/${(p.stem || '').split('/').pop()}`,
+  }))
 })
 
 useHead({

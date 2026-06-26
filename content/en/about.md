@@ -24,7 +24,7 @@ description: Get to know me and my tech stack
 
 This site was initially created on June 26, 2026, to document and showcase my learning and growth.
 
-See the [Changelog](/changelog) page for the evolution log.
+See the [Changelog](/en/changelog) page for the evolution log.
 
 ## Contact
 

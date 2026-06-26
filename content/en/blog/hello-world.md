@@ -2,7 +2,7 @@
 title: Hello, World!
 description: PmrALQ's personal blog is officially launched today! (ﾉ>ω<)ﾉ
 date: 2026-06-25
-tags: [lessons-learned, intro, meta]
+tags: [Experience, intro, meta]
 ---
 
 # Hello, World!

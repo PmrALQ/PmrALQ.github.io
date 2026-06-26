@@ -8,7 +8,6 @@ export default defineContentConfig({
       type: 'page',
       source: {
         include: '**/*.md',
-        exclude: '{projects,changelog,gallery}/**/*.md',
       },
       schema: z.object({
         title: z.string(),

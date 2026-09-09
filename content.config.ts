@@ -49,19 +49,5 @@ export default defineContentConfig({
         version: z.string(),
       }),
     }),
-
-    // Gallery photos
-    gallery: defineCollection({
-      type: 'page',
-      source: {
-        include: 'gallery/**/*.md',
-      },
-      schema: z.object({
-        title: z.string(),
-        description: z.string().optional(),
-        date: z.string().optional(),
-        image: z.string(),
-      }),
-    }),
   },
 })

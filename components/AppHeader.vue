@@ -1,44 +1,50 @@
 <template>
   <header
-    class="sticky top-0 z-50 border-b border-gray-200 bg-white/80 backdrop-blur-md dark:border-gray-800 dark:bg-gray-950/80"
+    ref="headerRef"
+    class="sticky top-0 z-50 glass-nav"
   >
-    <nav class="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
-      <!-- Logo / Site name -->
+    <div class="mx-auto flex items-center justify-between px-[22px] h-[54px]" style="max-width: var(--max-grid)">
+      <!-- Logo -->
       <NuxtLink
         :to="localePath('/')"
-        class="text-xl font-bold tracking-tight text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 transition-colors"
+        class="flex items-center gap-2 text-decoration-none"
+        style="font-size:15px; font-weight:650; letter-spacing:-0.01em; color:var(--text); text-decoration:none;"
       >
         {{ t('siteName') }}
       </NuxtLink>
 
       <!-- Desktop nav -->
-      <div class="hidden items-center gap-8 md:flex">
+      <div class="hidden items-center gap-1 md:flex">
         <NuxtLink
           v-for="link in navLinks"
           :key="link.to"
           :to="localePath(link.to)"
-          class="text-sm font-medium text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100 transition-colors"
-          exact-active-class="text-primary-600 dark:text-primary-400"
+          class="px-3 py-1.5 text-sm font-medium rounded-full transition-colors"
+          style="color:var(--text-2); text-decoration:none;"
+          exact-active-class="!text-[var(--text)]"
+          @mouseenter="(e: MouseEvent) => (e.target as HTMLElement).style.color = 'var(--text)'"
+          @mouseleave="(e: MouseEvent) => { if (!(e.target as HTMLElement).classList.contains('router-link-exact-active')) (e.target as HTMLElement).style.color = 'var(--text-2)' }"
         >
           {{ t(link.labelKey) }}
         </NuxtLink>
       </div>
 
-      <!-- Right side: theme + lang toggle -->
+      <!-- Right: theme + lang + mobile -->
       <div class="flex items-center gap-3">
         <ThemeToggle />
         <LanguageSwitch />
 
         <!-- Mobile hamburger -->
         <button
-          class="inline-flex items-center justify-center rounded-md p-2 text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800 md:hidden"
+          class="inline-flex items-center justify-center rounded-full p-2 md:hidden"
+          style="color:var(--text-2);"
           aria-label="Toggle menu"
           @click="mobileOpen = !mobileOpen"
         >
           <svg
             v-if="!mobileOpen"
             xmlns="http://www.w3.org/2000/svg"
-            class="h-6 w-6"
+            class="h-5 w-5"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -49,7 +55,7 @@
           <svg
             v-else
             xmlns="http://www.w3.org/2000/svg"
-            class="h-6 w-6"
+            class="h-5 w-5"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -59,20 +65,22 @@
           </svg>
         </button>
       </div>
-    </nav>
+    </div>
 
     <!-- Mobile menu -->
     <Transition name="slide-down">
       <div
         v-if="mobileOpen"
-        class="border-t border-gray-200 bg-white px-6 py-4 dark:border-gray-800 dark:bg-gray-950 md:hidden"
+        class="border-t md:hidden px-[22px] py-3"
+        style="background:var(--surface); border-color:var(--hairline);"
       >
         <NuxtLink
           v-for="link in navLinks"
           :key="link.to"
           :to="localePath(link.to)"
-          class="block rounded-md px-3 py-2 text-sm font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-900 dark:hover:text-gray-100"
-          exact-active-class="bg-gray-50 text-primary-600 dark:bg-gray-900 dark:text-primary-400"
+          class="block rounded-lg px-3 py-2.5 text-sm font-medium"
+          style="color:var(--text-2); text-decoration:none;"
+          exact-active-class="!text-[var(--text)]"
           @click="mobileOpen = false"
         >
           {{ t(link.labelKey) }}
@@ -86,6 +94,7 @@
 const { t } = useI18n()
 const localePath = useLocalePath()
 const mobileOpen = ref(false)
+const headerRef = ref<HTMLElement>()
 
 const navLinks = [
   { to: '/', labelKey: 'nav.home' },
@@ -101,12 +110,28 @@ const route = useRoute()
 watch(() => route.fullPath, () => {
   mobileOpen.value = false
 })
+
+// Scroll-aware border — only show hairline when scrolled
+function onScroll() {
+  headerRef.value?.classList.toggle('scrolled', window.scrollY > 8)
+}
+
+onMounted(() => {
+  window.addEventListener('scroll', onScroll, { passive: true })
+  onScroll() // initial state
+})
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', onScroll)
+})
 </script>
 
 <style scoped>
-.slide-down-enter-active,
+.slide-down-enter-active {
+  transition: all 0.25s var(--ease-out-quart);
+}
 .slide-down-leave-active {
-  transition: all 0.25s ease;
+  transition: all 0.2s var(--ease-out-quart);
 }
 .slide-down-enter-from,
 .slide-down-leave-to {

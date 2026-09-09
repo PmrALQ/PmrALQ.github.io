@@ -12,7 +12,7 @@
     "hero": {
       "greeting": "Welcome, nya~ 🐾, I'm",
       "role": "AI Student",
-      "description": "Nice to meet you! Looking forward to your guidance ᔦ ° ꒳ ° ᔨ ̖́-"
+      "description": "Nice to meet you! Looking forward to this ᔦ ° ꒳ ° ᔨ ̖́-"
     },
     "latestWorks": "Portfolio",
     "noWorks": "No works yet — stay tuned!"
@@ -65,8 +65,18 @@
     "sourceCode": "Source Code",
     "techStack": "Tech Stack"
   },
+  "splash": {
+    "loading": "Loading…"
+  },
   "theme": {
     "light": "Light",
     "dark": "Dark"
+  },
+  "error": {
+    "notFound": "Page Not Found",
+    "notFoundDesc": "The page you are looking for doesn't exist or has been moved.",
+    "generic": "Something Went Wrong",
+    "genericDesc": "An unexpected error occurred. Please try again later.",
+    "backHome": "← Back to Home"
   }
 }

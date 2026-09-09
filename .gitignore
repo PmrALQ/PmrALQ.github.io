@@ -25,5 +25,15 @@ npm-debug.log*
 # Content DB
 contents.sqlite
 
+# Local tooling / agent memory (machine-specific)
+.workbuddy/
+.claude/
+
+# Generated analysis artifacts (project-report/ 由 AI 分析产出)
+project-report/
+
+# One-off raw asset (2MB 源图，已产出 public/images/paw.png)
+猫爪.png
+
 # Misc
 注意事项/

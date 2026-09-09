@@ -32,7 +32,7 @@ export default defineNuxtConfig({
       { code: 'zh', iso: 'zh-CN', name: '中文' },
       { code: 'en', iso: 'en-US', name: 'English' },
     ],
-    vueI18n: './i18n.config.ts',
+    vueI18n: 'i18n.config.ts',
   },
 
   // ── Content — Markdown-driven blog ─────────────────────────────
@@ -68,7 +68,10 @@ export default defineNuxtConfig({
     prerender: {
       crawlLinks: true,
         failOnError: false,
-      routes: ['/'],
+      routes: ['/', '/api/photos'],
+    },
+    routeRules: {
+      '/blog': { redirect: '/archive' },
     },
     output: {
       publicDir: '.output/public',

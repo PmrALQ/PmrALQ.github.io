@@ -1,7 +1,7 @@
 <template>
-  <footer class="border-t border-gray-200 bg-gray-50 dark:border-gray-800 dark:bg-gray-950">
-    <div class="mx-auto flex max-w-5xl flex-col items-center gap-4 px-6 py-10 sm:flex-row sm:justify-between">
-      <p class="text-sm text-gray-500 dark:text-gray-400">
+  <footer class="border-t mt-auto" style="border-color:var(--hairline);">
+    <div class="mx-auto flex flex-col items-center gap-4 px-[22px] py-8 sm:flex-row sm:justify-between" style="max-width:var(--max-grid)">
+      <p class="text-sm" style="color:var(--text-3);">
         © {{ new Date().getFullYear() }} {{ t('siteName') }}
       </p>
       <div class="flex items-center gap-6">
@@ -9,7 +9,8 @@
           v-for="link in footerLinks"
           :key="link.to"
           :to="localePath(link.to)"
-          class="text-sm text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 transition-colors"
+          class="text-sm transition-colors hover:opacity-70"
+          style="color:var(--text-3); text-decoration:none;"
         >
           {{ t(link.labelKey) }}
         </NuxtLink>

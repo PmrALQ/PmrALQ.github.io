@@ -1,9 +1,9 @@
 <template>
-  <div class="mb-16 text-center">
-    <h1 class="text-3xl font-extrabold tracking-tight text-primary-600 dark:text-primary-400 sm:text-4xl">
+  <div class="mb-12">
+    <h1 style="font-size:clamp(27px,5vw,46px); font-weight:700; letter-spacing:-0.03em; line-height:1.1; color:var(--text); text-align:center;">
       {{ title }}
     </h1>
-    <p v-if="description" class="mt-4 max-w-2xl mx-auto text-lg text-gray-500 dark:text-gray-400">
+    <p v-if="description" class="mt-4 mx-auto max-w-xl text-center" style="font-size:clamp(15px,2.5vw,18px); color:var(--text-2); line-height:1.6;">
       {{ description }}
     </p>
   </div>

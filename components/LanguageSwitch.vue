@@ -1,14 +1,9 @@
 <template>
-  <div class="flex items-center gap-1 text-sm font-medium">
+  <div class="seg-control">
     <button
       v-for="locale in availableLocales"
       :key="locale.code"
-      class="rounded-md px-2 py-1 transition-colors"
-      :class="
-        locale.code === currentLocale
-          ? 'bg-gray-200 text-gray-900 dark:bg-gray-700 dark:text-white'
-          : 'text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200'
-      "
+      :class="{ active: locale.code === currentLocale }"
       @click="switchLocale(locale.code)"
     >
       {{ locale.label }}

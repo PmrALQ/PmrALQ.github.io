@@ -1,61 +1,50 @@
 <template>
-  <div
-    class="group relative overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition-all hover:shadow-md hover:border-primary-300 dark:border-gray-800 dark:bg-gray-900 dark:hover:border-primary-700"
+  <NuxtLink
+    :to="localePath(link)"
+    class="card-apple group overflow-hidden block text-decoration-none"
+    style="color:var(--text); text-decoration:none;"
   >
     <!-- Thumbnail -->
-    <div v-if="project.thumbnail" class="aspect-video overflow-hidden bg-gray-100 dark:bg-gray-800">
+    <div v-if="project.thumbnail" class="aspect-video overflow-hidden" style="background:var(--hover);">
       <img
         :src="project.thumbnail"
         :alt="project.title"
         class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
       />
     </div>
-    <!-- Placeholder when no thumbnail -->
-    <div v-else class="aspect-video flex items-center justify-center bg-gradient-to-br from-primary-100 to-primary-50 dark:from-primary-900/30 dark:to-primary-800/20">
+    <div v-else class="aspect-video flex items-center justify-center" style="background:var(--hover);">
       <span class="text-4xl">{{ project.type === 'game' ? '🎮' : '💻' }}</span>
     </div>
 
-    <!-- Content -->
-    <div class="p-5">
-      <!-- Type badge -->
+    <div class="p-[18px]">
       <div class="flex items-center gap-2 mb-3">
-        <span
-          v-if="project.type"
-          class="inline-flex items-center rounded-full bg-primary-50 px-2 py-0.5 text-xs font-medium text-primary-600 dark:bg-primary-900/30 dark:text-primary-400"
-        >
+        <span v-if="project.type" class="tag-accent">
           {{ project.type }}
         </span>
-        <time v-if="project.date" class="text-xs text-gray-400 dark:text-gray-500">
+        <time v-if="project.date" class="tabular-nums" style="font-size:12px; color:var(--text-3);">
           {{ formatDate(project.date) }}
         </time>
       </div>
 
-      <!-- Title -->
-      <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
-        <NuxtLink
-          :to="localePath(link)"
-          class="after:absolute after:inset-0"
-        >
-          {{ project.title }}
-        </NuxtLink>
+      <h3 style="font-size:17px; font-weight:600; letter-spacing:-0.01em; line-height:1.45; color:var(--text); margin-bottom:6px;">
+        {{ project.title }}
       </h3>
 
-      <p class="text-sm text-gray-500 dark:text-gray-400 line-clamp-2 mb-3">
+      <p v-if="project.description" class="line-clamp-2 mb-3" style="font-size:13.5px; color:var(--text-2); line-height:1.5;">
         {{ project.description }}
       </p>
 
-      <!-- Tech stack -->
       <div v-if="project.tech?.length" class="flex flex-wrap gap-1.5">
         <span
           v-for="t in project.tech"
           :key="t"
-          class="inline-flex items-center rounded-md bg-gray-100 px-2 py-0.5 text-xs font-medium text-gray-600 dark:bg-gray-800 dark:text-gray-400"
+          class="tag-plain"
         >
           {{ t }}
         </span>
       </div>
     </div>
-  </div>
+  </NuxtLink>
 </template>
 
 <script setup lang="ts">

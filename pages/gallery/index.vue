@@ -1,29 +1,30 @@
 <template>
-  <div class="px-6 py-24">
-    <div class="mx-auto max-w-5xl">
+  <div ref="pageRoot" class="mx-auto px-[22px] section-gap" style="max-width:var(--max-grid);">
+    <div data-animate>
       <PageHero :title="t('gallery.title')" :description="t('gallery.description')" />
-
-      <div v-if="photos && photos.length > 0" class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        <div
-          v-for="photo in photos"
-          :key="photo.stem"
-          class="group relative overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition-all hover:shadow-md hover:border-primary-300 dark:border-gray-800 dark:bg-gray-900 dark:hover:border-primary-700 cursor-pointer"
-          @click="openLightbox(photo.image, photo.title)"
-        >
-          <div class="aspect-square overflow-hidden bg-gray-100 dark:bg-gray-800">
-            <img :src="photo.image" :alt="photo.title" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
-          </div>
-          <div class="p-4">
-            <h3 class="text-sm font-semibold text-gray-900 dark:text-white truncate">{{ photo.title }}</h3>
-            <time v-if="photo.date" class="text-xs text-gray-400 dark:text-gray-500 mt-1">{{ formatDate(photo.date) }}</time>
-          </div>
+    </div>
+    <div v-if="photos && photos.length > 0" class="grid gap-[14px]" style="grid-template-columns:repeat(auto-fill, minmax(290px, 1fr));">
+      <div
+        v-for="(photo, i) in photos"
+        :key="photo.src"
+        data-animate
+        :data-animate-delay="String(0.12 + i * 0.06)"
+        class="card-apple overflow-hidden cursor-pointer"
+        @click="openLightbox(photo.src, photo.title)"
+      >
+        <div class="aspect-square overflow-hidden" style="background:var(--hover);">
+          <img :src="photo.src" :alt="photo.title" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" />
+        </div>
+        <div class="p-4">
+          <h3 class="truncate" style="font-size:15px; font-weight:600; letter-spacing:-0.01em; color:var(--text);">{{ photo.title }}</h3>
+          <time v-if="photo.date" class="tabular-nums mt-1 block" style="font-size:12px; color:var(--text-3);">{{ formatDate(photo.date) }}</time>
         </div>
       </div>
-
-      <p v-else class="text-center text-gray-500 dark:text-gray-400 py-16">
-        {{ t('gallery.noPhotos') }}
-      </p>
     </div>
+
+    <p v-else class="text-center py-16" style="color:var(--text-3);">
+      {{ t('gallery.noPhotos') }}
+    </p>
 
     <GalleryLightbox :visible="lightboxVisible" :src="lightboxSrc" :alt="lightboxAlt" @close="lightboxVisible = false" />
   </div>
@@ -31,6 +32,8 @@
 
 <script setup lang="ts">
 const { t, locale } = useI18n()
+const pageRoot = ref<HTMLElement>()
+usePageAnimations(pageRoot)
 
 const lightboxVisible = ref(false)
 const lightboxSrc = ref('')
@@ -42,13 +45,6 @@ function openLightbox(src: string, alt: string) {
   lightboxVisible.value = true
 }
 
-const { data: photos } = await useAsyncData(`gallery-${locale.value}`, async () => {
-  return await queryCollection('content')
-    .where('path', 'LIKE', `/${locale.value}/gallery/%`)
-    .order('date', 'DESC')
-    .all()
-}, { watch: [locale] })
-
 function formatDate(dateStr: string): string {
   const date = new Date(dateStr)
   if (isNaN(date.getTime())) return dateStr
@@ -56,6 +52,8 @@ function formatDate(dateStr: string): string {
     year: 'numeric', month: 'long', day: 'numeric',
   })
 }
+
+const { data: photos } = await useFetch('/api/photos')
 
 useHead({
   title: t('gallery.title'),

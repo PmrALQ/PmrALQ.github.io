@@ -5,12 +5,14 @@
 </template>
 
 <script setup lang="ts">
+const { locale } = useI18n()
+
 useHead({
   htmlAttrs: {
-    lang: 'zh',
+    lang: computed(() => locale.value),
   },
   link: [
-    { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+    { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
   ],
 })
 </script>

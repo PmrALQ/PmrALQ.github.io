@@ -1,24 +1,23 @@
 <template>
-  <div class="px-6 py-24">
-    <div class="mx-auto max-w-3xl">
+  <div ref="pageRoot" class="mx-auto px-[22px] section-gap" style="max-width:var(--max-read);">
+    <div data-animate>
       <PageHero :title="t('guestbook.title')" :description="t('guestbook.description')" />
-
-      <!-- Content from markdown -->
-      <article class="prose prose-gray dark:prose-invert max-w-none mt-12">
-        <ContentRenderer v-if="page" :value="page" />
-        <p v-else class="text-gray-500 dark:text-gray-400">
-          {{ t('home.noWorks') }}
-        </p>
-      </article>
-
-      <!-- Waline mount point (reserved for future activation) -->
-      <div id="waline" class="mt-8" />
     </div>
+    <article data-animate data-animate-delay="0.15" class="prose max-w-none mt-12" style="line-height:1.85; color:var(--text-body);">
+      <ContentRenderer v-if="page" :value="page" />
+      <p v-else style="color:var(--text-3);">
+        {{ t('home.noWorks') }}
+      </p>
+    </article>
+
+    <div id="waline" class="mt-8" />
   </div>
 </template>
 
 <script setup lang="ts">
 const { t, locale } = useI18n()
+const pageRoot = ref<HTMLElement>()
+usePageAnimations(pageRoot)
 
 const { data: page } = await useAsyncData(
   `guestbook-${locale.value}`,

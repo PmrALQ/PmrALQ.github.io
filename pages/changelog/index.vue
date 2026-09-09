@@ -1,11 +1,11 @@
 <template>
-  <div class="px-6 py-24">
-    <div class="mx-auto max-w-3xl">
+  <div ref="pageRoot" class="mx-auto px-[22px] section-gap" style="max-width:var(--max-read);">
+    <div data-animate>
       <PageHero :title="t('changelog.title')" :description="t('changelog.description')" />
-      <div class="space-y-6">
+    </div>
+    <div class="space-y-4">
+      <div v-for="(entry, index) in entries" :key="index" data-animate :data-animate-delay="String(0.15 + index * 0.06)">
         <ChangelogEntry
-          v-for="(entry, index) in entries"
-          :key="index"
           :entry="{
             title: entry.title,
             description: entry.description,
@@ -14,16 +14,18 @@
             body: entry,
           }"
         />
-        <p v-if="entries.length === 0" class="text-center text-gray-400 dark:text-gray-500 py-16">
-          还没有版本记录
-        </p>
       </div>
+      <p v-if="entries.length === 0" class="text-center py-16" style="color:var(--text-3);">
+        还没有版本记录
+      </p>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 const { t, locale } = useI18n()
+const pageRoot = ref<HTMLElement>()
+usePageAnimations(pageRoot)
 
 const { data: entries } = await useAsyncData(`changelog-${locale.value}`, async () => {
   return await queryCollection('content')

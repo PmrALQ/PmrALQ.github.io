@@ -1,140 +1,127 @@
 <template>
   <div>
-    <!-- Hero Section — Two Column -->
-    <section class="relative overflow-hidden px-6 py-24 sm:py-32 lg:py-40">
-      <div class="mx-auto max-w-5xl">
-        <div class="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center">
-          <!-- Left: Text -->
-          <div class="relative z-10">
-            <h1 class="text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-5xl lg:text-6xl leading-tight">
-              {{ t('home.hero.greeting') }}
-              <br />
-              <span class="bg-gradient-to-r from-primary-500 via-primary-600 to-cyan-500 bg-clip-text text-transparent">
-                {{ name }}
-              </span>
-            </h1>
-            <p class="mt-4 text-xl text-gray-500 dark:text-gray-400 sm:text-2xl">
-              {{ t('home.hero.role') }}
-            </p>
-            <p class="mt-4 text-lg text-gray-400 dark:text-gray-500 leading-relaxed max-w-md">
-              {{ t('home.hero.description') }}
-            </p>
-            <div class="mt-8">
-              <SocialLinks />
-            </div>
+    <!-- Hero：全屏，左文右动效 -->
+    <section ref="pageRoot" class="hero-section">
+      <div class="hero-inner">
+        <div class="hero-left">
+          <div class="hero-item text-xs font-semibold tracking-[0.14em] uppercase" style="color:var(--text-3);">
+            {{ t('home.hero.role') }}
           </div>
-
-          <!-- Right: Rich water-blue decorative design -->
-          <div class="relative hidden lg:flex items-center justify-center">
-            <div class="relative w-[380px] h-[380px]">
-              <div class="absolute inset-0 rounded-full border-[6px] border-primary-100 dark:border-primary-900/40 animate-spin-slow opacity-70" />
-              <div class="absolute inset-3 rounded-full border-[4px] border-dashed border-primary-200 dark:border-primary-800/50 animate-spin-slower opacity-60" />
-              <div class="absolute inset-8 rounded-full border-[5px] border-primary-300 dark:border-primary-700 animate-spin-medium opacity-50" />
-              <div class="absolute inset-16 rounded-full bg-gradient-to-br from-primary-200 via-primary-100 to-cyan-100 dark:from-primary-900/50 dark:via-primary-800/40 dark:to-cyan-900/30 flex items-center justify-center shadow-2xl shadow-primary-200/60 dark:shadow-primary-900/40">
-                <div class="text-center">
-                  <svg class="w-28 h-28 mx-auto" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <polygon points="60,10 108,35 108,85 60,110 12,85 12,35" stroke="currentColor" stroke-width="1.5" opacity="0.2" class="text-primary-400 dark:text-primary-500" />
-                    <polygon points="60,25 95,43 95,77 60,95 25,77 25,43" stroke="currentColor" stroke-width="2" opacity="0.5" class="text-primary-500 dark:text-primary-400" />
-                    <text x="60" y="55" text-anchor="middle" font-size="14" font-family="monospace" font-weight="bold" opacity="0.6" fill="currentColor" class="text-primary-600 dark:text-primary-400">&lt;/&gt;</text>
-                    <circle cx="60" cy="70" r="4" fill="currentColor" class="text-primary-500 dark:text-primary-400" />
-                    <line x1="60" y1="55" x2="60" y2="66" stroke="currentColor" stroke-width="2" opacity="0.5" class="text-primary-400 dark:text-primary-500" />
-                    <circle cx="60" cy="10" r="3" fill="currentColor" class="text-primary-400 dark:text-primary-500" opacity="0.7" />
-                    <circle cx="108" cy="35" r="2.5" fill="currentColor" class="text-primary-300 dark:text-primary-600" opacity="0.6" />
-                    <circle cx="108" cy="85" r="2" fill="currentColor" class="text-primary-400 dark:text-primary-500" opacity="0.5" />
-                    <circle cx="60" cy="110" r="3" fill="currentColor" class="text-primary-300 dark:text-primary-600" opacity="0.7" />
-                    <circle cx="12" cy="85" r="2.5" fill="currentColor" class="text-primary-400 dark:text-primary-500" opacity="0.6" />
-                    <circle cx="12" cy="35" r="2" fill="currentColor" class="text-primary-300 dark:text-primary-600" opacity="0.5" />
-                  </svg>
-                  <span class="block mt-4 text-xs font-mono font-bold text-primary-500 dark:text-primary-400 tracking-[0.3em] uppercase">PmrALQ</span>
-                </div>
-              </div>
-              <div
-                v-for="dot in floatingDots"
-                :key="dot.id"
-                class="absolute rounded-full animate-float"
-                :style="{
-                  width: dot.size + 'px',
-                  height: dot.size + 'px',
-                  left: dot.x + '%',
-                  top: dot.y + '%',
-                  backgroundColor: dot.color,
-                  opacity: dot.opacity,
-                  animationDelay: dot.delay + 's',
-                  animationDuration: dot.duration + 's',
-                  boxShadow: `0 0 ${dot.size * 3}px ${dot.color}40`,
-                }"
-              />
-            </div>
+          <h1 class="hero-item" style="margin-top:15px; font-size:clamp(32px,6vw,52px); font-weight:700; letter-spacing:-0.03em; line-height:1.06; color:var(--text);">
+            {{ t('home.hero.greeting') }}
+            <span style="color:var(--accent);">{{ name }}</span>
+          </h1>
+          <p class="hero-item" style="margin-top:16px; font-size:clamp(15px,2.5vw,18px); color:var(--text-2); line-height:1.6; max-width:560px; margin-inline:auto;">
+            {{ t('home.hero.description') }}
+          </p>
+          <div class="hero-item mt-8">
+            <SocialLinks />
           </div>
         </div>
-      </div>
-
-      <div class="absolute inset-0 -z-10 overflow-hidden">
-        <div class="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] rounded-full bg-gradient-to-br from-primary-100/50 via-primary-50/20 to-transparent dark:from-primary-900/30 dark:via-primary-800/10 dark:to-transparent" />
-        <div class="absolute right-0 bottom-0 translate-x-1/4 translate-y-1/4 w-[500px] h-[500px] rounded-full bg-gradient-to-tl from-cyan-100/30 to-transparent dark:from-cyan-900/15 dark:to-transparent" />
-        <div class="absolute left-0 bottom-0 -translate-x-1/4 translate-y-1/4 w-[400px] h-[400px] rounded-full bg-gradient-to-tr from-primary-100/30 to-transparent dark:from-primary-900/10 dark:to-transparent" />
+        <HeroVisual />
       </div>
     </section>
 
-    <!-- Wave divider -->
-    <div class="relative h-16 -mt-8 overflow-hidden">
-      <svg class="absolute bottom-0 w-full h-16 text-white dark:text-gray-950" viewBox="0 0 1440 64" preserveAspectRatio="none" fill="currentColor">
-        <path d="M0,32 C180,48 360,16 540,32 C720,48 900,16 1080,32 C1260,48 1440,32 1440,32 L1440,64 L0,64 Z" opacity="0.5" />
-        <path d="M0,48 C240,28 480,64 720,48 C960,32 1200,56 1440,48 L1440,64 L0,64 Z" />
-      </svg>
-    </div>
-
     <!-- Featured Works -->
-    <section class="px-6 pb-24 pt-8">
-      <div class="mx-auto max-w-5xl">
-        <div class="flex items-center justify-between mb-10">
-          <h2 class="text-2xl font-bold text-gray-900 dark:text-white sm:text-3xl">
-            {{ t('home.latestWorks') }}
-          </h2>
-          <NuxtLink
-            :to="localePath('/archive')"
-            class="group inline-flex items-center gap-2 text-sm font-medium text-primary-600 hover:text-primary-700 dark:text-primary-400 dark:hover:text-primary-300 transition-colors"
-          >
-            {{ t('blog.allPosts') }}
-            <span class="group-hover:translate-x-1 transition-transform">→</span>
-          </NuxtLink>
-        </div>
+    <section class="mx-auto px-[22px] section-gap" style="max-width:var(--max-grid)">
+      <div data-animate class="flex items-center justify-between mb-10">
+        <h2 style="font-size:clamp(20px,3.4vw,26px); font-weight:700; letter-spacing:-0.02em; line-height:1.25; color:var(--text);">
+          {{ t('home.latestWorks') }}
+        </h2>
+        <NuxtLink
+          :to="localePath('/archive')"
+          class="group inline-flex items-center gap-2 text-sm font-medium transition-colors"
+          style="color:var(--accent); text-decoration:none;"
+        >
+          {{ t('blog.allPosts') }}
+          <span class="group-hover:translate-x-1 transition-transform">→</span>
+        </NuxtLink>
+      </div>
 
-        <div v-if="works && works.length > 0" class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          <template v-for="item in works" :key="item.stem">
-            <BlogCard v-if="!item.demoUrl && !item.tech" :post="item" />
-            <ProjectCard v-else :project="item" />
-          </template>
+      <!-- Card grid for works -->
+      <div v-if="works && works.length > 0" class="grid gap-[14px]" style="grid-template-columns:repeat(auto-fill, minmax(290px, 1fr));">
+        <div v-for="item in works" :key="item.stem" class="card-wrap" data-reveal-card data-tilt>
+          <span class="tilt-sheen" aria-hidden="true"></span>
+          <BlogCard v-if="item._type === 'post'" :post="item" />
+          <ProjectCard v-else :project="item" />
         </div>
-        <div v-else class="text-center py-16">
-          <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-primary-50 dark:bg-primary-900/20 mb-4">
-            <svg class="w-8 h-8 text-primary-300 dark:text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-          </div>
-          <p class="text-gray-400 dark:text-gray-500">{{ t('home.noWorks') }}</p>
-        </div>
+      </div>
+
+      <!-- Empty -->
+      <div v-else class="text-center py-16">
+        <p style="color:var(--text-3);">{{ t('home.noWorks') }}</p>
       </div>
     </section>
   </div>
 </template>
 
 <script setup lang="ts">
+import { gsap } from 'gsap'
 const { t, locale } = useI18n()
 const localePath = useLocalePath()
 
 const name = 'PmrALQ'
+const pageRoot = ref<HTMLElement>()
 
-const floatingDots = [
-  { id: 1, x: 8, y: 10, size: 8, color: '#38bdf8', opacity: 0.6, delay: 0, duration: 4 },
-  { id: 2, x: 85, y: 18, size: 5, color: '#7dd3fc', opacity: 0.5, delay: 0.7, duration: 3.5 },
-  { id: 3, x: 15, y: 80, size: 6, color: '#0ea5e9', opacity: 0.4, delay: 1.4, duration: 5 },
-  { id: 4, x: 78, y: 75, size: 10, color: '#bae6fd', opacity: 0.5, delay: 0.3, duration: 4.5 },
-  { id: 5, x: 90, y: 55, size: 4, color: '#38bdf8', opacity: 0.55, delay: 2.1, duration: 3 },
-  { id: 6, x: 5, y: 45, size: 7, color: '#7dd3fc', opacity: 0.4, delay: 1.0, duration: 6 },
-  { id: 7, x: 50, y: 5, size: 5, color: '#0ea5e9', opacity: 0.45, delay: 1.8, duration: 3.8 },
-  { id: 8, x: 45, y: 92, size: 6, color: '#bae6fd', opacity: 0.5, delay: 2.5, duration: 4.2 },
-]
+const { splashFinished } = useSplash()
+
+let heroCtx: gsap.Context | null = null
+let heroTl: gsap.core.Timeline | null = null
+
+onMounted(() => {
+  if (!pageRoot.value) return
+
+  heroCtx = gsap.context(() => {
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+    // hero 入场：开屏完成后播放（from 的 immediateRender 让元素在开屏期间保持隐藏）
+    if (!reduce) {
+      heroTl = gsap.timeline({ paused: true })
+      heroTl.from(pageRoot.value!.querySelectorAll('.hero-item'), {
+        y: 28,
+        autoAlpha: 0,
+        duration: 0.7,
+        stagger: 0.12,
+        ease: 'power3.out',
+      })
+    }
+
+    // hero 滚动淡出（与右侧动效形成景深）
+    // 注意：trigger 必须用元素引用——字符串会被 gsap.context scoping
+    // 到 pageRoot 内部查找，而 .hero-section 是根元素自身，查不到
+    const fadeCfg = {
+      trigger: pageRoot.value!,
+      start: 'top top',
+      end: 'bottom 25%',
+      scrub: true,
+    }
+    gsap.to('.hero-inner', {
+      opacity: 0,
+      yPercent: -12,
+      ease: 'none',
+      scrollTrigger: fadeCfg,
+    })
+    gsap.to('.hero-visual', {
+      yPercent: 14,
+      ease: 'none',
+      scrollTrigger: fadeCfg,
+    })
+  }, pageRoot.value)
+
+  // 注册顺序：先建 timeline 再 watch，immediate 检查当前 splash 状态
+  watch(splashFinished, (done) => {
+    if (done) heroTl?.play()
+  }, { immediate: true })
+})
+
+onUnmounted(() => {
+  heroCtx?.revert()
+})
+
+// 卡片夸张入场 / 3D tilt / 常规 fade-up
+useRevealCards(pageRoot)
+useTiltCards(pageRoot)
+usePageAnimations(pageRoot)
 
 const { data: works } = await useAsyncData('home-works', async () => {
   const posts = await queryCollection('content')
@@ -149,7 +136,10 @@ const { data: works } = await useAsyncData('home-works', async () => {
     .limit(3)
     .all()
 
-  const all = [...posts, ...projects]
+  const all = [
+    ...posts.map(p => ({ ...p, _type: 'post' as const })),
+    ...projects.map(p => ({ ...p, _type: 'project' as const })),
+  ]
     .filter(item => item.date)
     .sort((a, b) => new Date(b.date!).getTime() - new Date(a.date!).getTime())
     .slice(0, 6)
@@ -164,14 +154,3 @@ useHead({
   ],
 })
 </script>
-
-<style scoped>
-@keyframes spin-slow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-@keyframes spin-slower { from { transform: rotate(360deg); } to { transform: rotate(0deg); } }
-@keyframes spin-medium { from { transform: rotate(0deg); } to { transform: rotate(-360deg); } }
-@keyframes float { 0%, 100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-12px) scale(1.15); } }
-.animate-spin-slow { animation: spin-slow 25s linear infinite; }
-.animate-spin-slower { animation: spin-slower 18s linear infinite; }
-.animate-spin-medium { animation: spin-medium 15s linear infinite; }
-.animate-float { animation: float 4s ease-in-out infinite; }
-</style>

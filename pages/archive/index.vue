@@ -1,8 +1,12 @@
 <template>
-  <div class="px-6 py-24">
-    <div class="mx-auto max-w-3xl">
+  <div ref="pageRoot" class="mx-auto px-[22px] section-gap" style="max-width:var(--max-read);">
+    <div data-animate>
       <PageHero :title="t('archive.title')" :description="t('archive.description')" />
+    </div>
+    <div data-animate data-animate-delay="0.12">
       <CategoryFilter :active="activeCategory" @select="activeCategory = $event" />
+    </div>
+    <div data-animate data-animate-delay="0.2">
       <ArchiveTimeline :items="filteredPosts" />
     </div>
   </div>
@@ -12,7 +16,9 @@
 import { categoryTagMap } from '~/utils/tags'
 
 const { t, locale } = useI18n()
+const pageRoot = ref<HTMLElement>()
 const activeCategory = ref('all')
+usePageAnimations(pageRoot)
 
 const { data: allPosts } = await useAsyncData(
   `archive-posts-${locale.value}`,

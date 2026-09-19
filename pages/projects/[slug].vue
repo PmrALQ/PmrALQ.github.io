@@ -81,10 +81,11 @@ usePageAnimations(pageRoot)
 const slug = computed(() => route.params.slug as string)
 
 const { data: page } = await useAsyncData(
-  `project-${slug.value}`,
+  `project-${locale.value}-${slug.value}`,
   async () => {
     const result = await queryCollection('projects')
-      .where('path', '=', `/projects/${slug.value}`)
+      // 路径带 locale 前缀(如 /zh/projects/sample-game), 与 i18n prefix 策略对齐
+      .where('path', '=', `/${locale.value}/projects/${slug.value}`)
       .limit(1)
       .all()
     return result[0] || null

@@ -85,6 +85,37 @@
   --cloud-puff:   rgba(120,190,255,0.55);  /* 点击猫爪（canvas 读取） */
   --splash-bg:    linear-gradient(165deg, #eaf4ff 0%, #cfe6ff 55%, #b4daff 100%);
   --tilt-sheen:   rgba(255,255,255,0.45);
+
+  /* 像素光标族（素材：public/cursors/*.png）
+     变量值 = url(素材) + 热点(x y)；fallback 关键字在引用处拼接（cursor: var(--cur-arrow), auto）
+     v4.4 · 2026-09-19：**日/夜分色**。日间保持参考图原色(蓝)，夜间色相 -25° 旋到青色
+       （对齐深色主题主题色 --accent #00FFFF）。两套形状/热点完全一致，只差配色：
+         日间 描边#05145E + 主体#59C1FC   夜间 描边#05395E + 主体#59FCF3
+       明度与饱和度保持不变，仅换色相，故描边仍够深、主体仍够亮
+       由 scripts/extract_cursors.py 的 HUE_SHIFT_DARK 控制（0 = 用原色），可复现
+     v4.3 · 2026-09-19：曾把日间也一起旋成青色，v4.4 起日间回退为原色
+     v4.2 · 2026-09-19：画布 32×32 → 40×40（≈ Windows 默认光标 32px 的 1.25 倍，
+       比默认略大但不夸张），热点同步重算
+     v4 · 2026-09-19：改为**严格从用户提供的像素光标精灵表逐像素提取**
+       脚本 scripts/extract_cursors.py（蓝色度分割 + 孔洞填充 + 逐图标独立取色 + 白底剔除 + 内部回填）
+       白底已去除，仅保留主体；主体内部被包围的白色（外链方框内部 /
+       放大镜镜片 / 沙漏玻璃 / 禁止符圆内）按原图保留为不透明
+       参考图只有一套配色，故 -dark 素材与亮色内容相同，未额外臆造变体
+       各图配色并不统一（箭头/手型以浅蓝为主体，禁止符/放大镜以亮蓝 + 白为主体），
+       故逐图标独立取色，未做全局统一
+     v3 · 2026-09-16：画布 32×32，参考精灵表 5 色（深蓝#0C1A5E / 主蓝#1E96F0 /
+       中蓝#63C6F8 / 亮蓝#B3E2FD / 白#FFFFFF）
+     v2 旧值（保留备查）：24×24；#1F63AE描边 / #4093E4填充 / #8CC5F4高光；
+       热点 arrow 2 1 · pointer 5 0 · zoom 10 10 …
+     ⚠ 改画布尺寸后务必同步热点；改素材后浏览器可能沿用旧图，需硬刷新 */
+  --cur-arrow:    url('/cursors/arrow.png') 5 0;        /* 默认箭头 · 左侧边缘顶端(尖端) (5,0) */
+  --cur-pointer:  url('/cursors/hand.png') 11 0;        /* 可点击 · 食指指尖 (11,0) */
+  --cur-text:     url('/cursors/text.png') 19 19;       /* 文本输入 · 画面中心 (19,19) */
+  --cur-external: url('/cursors/external.png') 3 5;     /* 新窗口外链 · 箭头尖端 (3,5)（右上小方框不参与） */
+  --cur-zoom:     url('/cursors/zoom.png') 3 39;        /* 放大查看 · 手柄末端(左下) (3,39) */
+  --cur-zoom-out: url('/cursors/zoom-out.png') 3 39;    /* 缩小 / 关闭 · 手柄末端(左下) (3,39) */
+  --cur-wait:     url('/cursors/wait.png') 19 19;       /* 加载等待 · 中心 (19,19) */
+  --cur-block:    url('/cursors/not-allowed.png') 19 19;/* 禁用 · 中心 (19,19) */
 }
 
 /* ── Base Layer ───────────────────────────────────────────────── */
@@ -93,12 +124,18 @@
     scroll-behavior: smooth;
     font-optical-sizing: auto;
 
-    /* 像素风蓝色光标（脚本生成：scripts/gen_cursors.py，暗色自动切换白描边版） */
-    cursor: url('/cursors/arrow.png') 1 1, auto;
+    /* 像素风蓝色光标（脚本生成：scripts/gen_cursors.py，暗色自动切换深描边版）
+       v3 · 2026-09-16：画布 32×32；亮色 深蓝#0C1A5E描边 + 主蓝#1E96F0填充 + 高光#63C6F8；
+         暗色 近白#F2F7FF描边 + 主蓝#4FAEF5填充；默认箭头热点 (1,1)
+       v2 · 2026-09-12：亮暗两侧统一为「深描边 + 亮填充」，描边不再取极深/极浅端
+       亮色: 中蓝#1F63AE描边 + 主蓝#4093E4填充 + 亮蓝#8CC5F4高光
+       夜间: 深蓝#0E3358描边 + 亮蓝#6FB6F2填充，避免深色背景上看不清
+       ——2026-09 起改为由 --cur-* 变量统一驱动，完整光标族见「像素光标系统」段 */
+    /* cursor: url('/cursors/arrow.png') 1 1, auto; */
+    cursor: var(--cur-arrow), auto;
   }
-  html.dark {
-    cursor: url('/cursors/arrow-dark.png') 1 1, auto;
-  }
+  /* 暗色光标无需单独声明属性：.dark 重声明 --cur-arrow 变量即可自动生效
+     html.dark { cursor: url('/cursors/arrow-dark.png') 1 1, auto; } */
 
   body {
     @apply antialiased;
@@ -223,6 +260,27 @@
   --cloud-puff:   rgba(0,255,255,0.42);
   --splash-bg:    linear-gradient(165deg, #02040c 0%, #031020 55%, #041a33 100%);
   --tilt-sheen:   rgba(0,255,255,0.16);
+
+  /* 像素光标族 · 暗色套
+     v4.4 · 2026-09-19：夜间改用青色（色相 -25°），与深色主题 --accent #00FFFF 同族；
+       日间仍为参考图原色蓝（见上方 :root）
+     v4.3 · 2026-09-19：曾同步为青色
+     v4.2 · 2026-09-19：同步 40×40，热点与亮色套一致
+     v4 · 2026-09-19：参考图只提供一套配色，未臆造暗色变体，
+       故 -dark 素材内容与亮色完全一致
+     v3 · 2026-09-16：近白#F2F7FF描边 + 主蓝#4FAEF5填充
+       + 中蓝#9BD8FB / 亮蓝#D6EEFE / 白#FFFFFF，32×32
+     v2 旧值（保留备查）：深蓝#0E3358描边 + 亮蓝#6FB6F2填充 + 高光#A9D7FB，24×24
+     注意：.dark 与 :root 同为 html 元素，此处仅重声明同名变量，
+     属性声明（cursor: var(--cur-*), fallback）在下方「像素光标系统」段只写一次 */
+  --cur-arrow:    url('/cursors/arrow-dark.png') 5 0;
+  --cur-pointer:  url('/cursors/hand-dark.png') 11 0;
+  --cur-text:     url('/cursors/text-dark.png') 19 19;
+  --cur-external: url('/cursors/external-dark.png') 3 5;
+  --cur-zoom:     url('/cursors/zoom-dark.png') 3 39;
+  --cur-zoom-out: url('/cursors/zoom-out-dark.png') 3 39;
+  --cur-wait:     url('/cursors/wait-dark.png') 19 19;
+  --cur-block:    url('/cursors/not-allowed-dark.png') 19 19;
 }
 
 /* ── Components Layer ─────────────────────────────────────────── */
@@ -408,15 +466,76 @@
     padding-bottom: clamp(34px, 6vw, 56px);
   }
 
-  /* 像素风蓝色手型光标（交互元素） */
+  /* ── 像素光标系统 ──────────────────────────────────────────────
+     亮/暗两套由 --cur-* 变量切换（.dark 重声明同名变量即可，属性只写一次）
+     热点(x y) 与 scripts/gen_cursors.py 的 HOTSPOTS 一一对应
+     默认箭头在 @layer base 的 html 上声明，此处不重复
+     v3 · 2026-09-16：画布 24×24 → 32×32、换参考精灵表 5 色。
+       本轮并非「只增不删」：git diff 实测 +107 / −12 行——其中 12 行删除来自旧硬编码
+       cursor 定义被 var(--cur-*) 等价替换（旧值已在注释中原样保留，功能无损失）；
+       git 之外另有若干行仅调整注释文本。本轮相对 v2 的变化：
+         新增 / 补强以下映射（既有规则、变量名与选择器名一律保留）：
+           ①-b 分段控件手型 · ②-b 正文可选区域 I 型
+         其余映射沿用 v2 结构，仅热点随 32×32 更新（见 :root 顶部 --cur-* 注释）
+     ───────────────────────────────────────────────────────────── */
+
+  /* ① 可点击：链接 / 按钮 / 表单控件 / 可聚焦控件（像素手型） */
   a, button, [role="button"], select, summary,
   label[for], input[type="submit"], input[type="button"] {
-    cursor: url('/cursors/hand.png') 2 1, pointer;
+    /* cursor: url('/cursors/hand.png') 2 1, pointer; */
+    cursor: var(--cur-pointer), pointer;
   }
-  .dark a, .dark button, .dark [role="button"], .dark select,
-  .dark summary, .dark label[for],
-  .dark input[type="submit"], .dark input[type="button"] {
-    cursor: url('/cursors/hand-dark.png') 2 1, pointer;
+  /* .dark 走变量，无需重复声明；原 .dark 手型规则保留备查 */
+  /* .dark a, .dark button, .dark [role="button"], .dark select,
+     .dark summary, .dark label[for],
+     .dark input[type="submit"], .dark input[type="button"] {
+       cursor: url('/cursors/hand-dark.png') 2 1, pointer;
+     } */
+
+  /* ①-b（v3 光标）分段控件 .seg-control 的 button / a 在组件层自带 cursor:pointer
+     （见上方 .seg-control button, .seg-control a { cursor: pointer } 规则）。
+     本规则与它同权重(0,1,1)、选择器完全相同，靠源码顺序在后生效——
+     若日后调整源码顺序（本条上移）会失效；故此处刻意用同选择器补更靠后的一条，交回像素手型 */
+  .seg-control button,
+  .seg-control a {
+    cursor: var(--cur-pointer), pointer;
+  }
+
+  /* ② 文本输入：Waline 评论框 / 搜索框 / 可编辑区域（像素 I 型光标） */
+  /* 注意：:not() 链必须紧贴书写，中间换行会被解析成后代选择器 */
+  input:not([type="button"]):not([type="submit"]):not([type="reset"]):not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="color"]):not([type="file"]),
+  textarea,
+  [contenteditable="true"] {
+    cursor: var(--cur-text), text;
+  }
+
+  /* ②-b（v3 光标）文本可选区域：正文 / 代码等可选中文本 → 像素 I 型
+     仅新增（input / textarea 已由上一条覆盖），覆盖 p / article / li / code / pre */
+  p, article, li, code, pre {
+    cursor: var(--cur-text), text;
+  }
+
+  /* ③ 新窗口外链：target="_blank"（箭头 + 右上 ↗ 角标） */
+  a[target="_blank"] {
+    cursor: var(--cur-external), pointer;
+  }
+
+  /* ④ 放大查看：相册卡片 / 灯箱图片（像素放大镜 +）
+     .card-apple.cursor-pointer 提升一级权重，压过 Tailwind 的 cursor-pointer 工具类 */
+  .card-apple.cursor-pointer,
+  [data-cursor="zoom"] {
+    cursor: var(--cur-zoom), zoom-in;
+  }
+
+  /* ⑤ 缩小 / 关闭：灯箱背景（像素放大镜 −） */
+  [data-cursor="zoom-out"] {
+    cursor: var(--cur-zoom-out), zoom-out;
+  }
+
+  /* ⑥ 禁用态：不可用控件（像素禁止符） */
+  :disabled,
+  [aria-disabled="true"] {
+    cursor: var(--cur-block), not-allowed;
   }
 
   /* Content link */
@@ -630,7 +749,8 @@
     justify-content: center;
     background: var(--splash-bg);
     overflow: hidden;
-    cursor: wait;
+    /* cursor: wait; */
+    cursor: var(--cur-wait), wait;  /* 像素沙漏：开屏加载期 */
   }
   .splash-cloud {
     position: absolute;

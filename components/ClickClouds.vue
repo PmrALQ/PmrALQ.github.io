@@ -47,7 +47,10 @@ function spawn(e: PointerEvent) {
   paws.push({
     x: e.clientX,
     y: e.clientY,
-    size: 30 + Math.random() * 22,
+    // v3 · 2026-09-19：在 v2 基础上调大约 25%（绘制时还会 ×1.9，现约 38~67px）
+    // v2 · 2026-09-19：整体调小约一半（当时约 30~53px）
+    // 历史值（保留备查）：size: 30 + Math.random() * 22, / size: 16 + Math.random() * 12,
+    size: 20 + Math.random() * 15,
     angle: (Math.random() - 0.5) * 0.9, // ±~25°，爪印自然朝向
     age: 0,
     life: 1.2,

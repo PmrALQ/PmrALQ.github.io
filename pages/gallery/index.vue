@@ -9,6 +9,7 @@
         :key="photo.src"
         data-animate
         :data-animate-delay="String(0.12 + i * 0.06)"
+        data-cursor="zoom"
         class="card-apple overflow-hidden cursor-pointer"
         @click="openLightbox(photo.src, photo.title)"
       >

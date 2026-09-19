@@ -28,7 +28,10 @@ const pageRoot = ref<HTMLElement>()
 usePageAnimations(pageRoot)
 
 const { data: entries } = await useAsyncData(`changelog-${locale.value}`, async () => {
-  return await queryCollection('content')
+  // 修正：原先查 content 集合，而 content 的 schema 不含 version（version 被归入 meta），
+  // 导致版本号徽章渲染为空。改查 changelog 集合后 version 为顶层字段，类型也正确。
+  // 原写法（保留备查）：return await queryCollection('content')
+  return await queryCollection('changelog')
     .where('path', 'LIKE', `/${locale.value}/changelog/%`)
     .order('date', 'DESC')
     .all()

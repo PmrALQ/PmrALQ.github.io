@@ -18,10 +18,11 @@ export default defineContentConfig({
     }),
 
     // Programming projects / games
+    // 注意: 真实文件在 content/zh|en/projects/, 需用 **/projects/*.md 才能命中
     projects: defineCollection({
       type: 'page',
       source: {
-        include: 'projects/**/*.md',
+        include: '**/projects/*.md',
       },
       schema: z.object({
         title: z.string(),
@@ -37,10 +38,11 @@ export default defineContentConfig({
     }),
 
     // Version changelog
+    // 注意: 真实文件在 content/zh|en/changelog/, 需用 **/changelog/*.md 才能命中
     changelog: defineCollection({
       type: 'page',
       source: {
-        include: 'changelog/**/*.md',
+        include: '**/changelog/*.md',
       },
       schema: z.object({
         title: z.string(),

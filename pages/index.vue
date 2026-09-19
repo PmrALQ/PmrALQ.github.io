@@ -131,7 +131,8 @@ const { data: works } = await useAsyncData('home-works', async () => {
     .all()
 
   const projects = await queryCollection('projects')
-    .where('path', 'LIKE', '/projects/%')
+    // 路径带 locale 前缀, 与 i18n prefix 策略对齐
+    .where('path', 'LIKE', `/${locale.value}/projects/%`)
     .order('date', 'DESC')
     .limit(3)
     .all()

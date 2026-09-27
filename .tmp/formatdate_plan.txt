@@ -1,0 +1,125 @@
+========================================================================
+FILE: components/ArchiveTimeline.vue
+========================================================================
+-- function at line 60-67:
+  60| function formatDate(dateStr: string): string {
+  61|   const date = new Date(dateStr)
+  62|   if (isNaN(date.getTime())) return dateStr
+  63|   return date.toLocaleDateString(locale.value === 'zh' ? 'zh-CN' : 'en-US', {
+  64|     month: 'short',
+  65|     day: 'numeric',
+  66|   })
+  67| }
+-- call site line 14: {{ formatDate(item.date) }}
+-- useI18n line 47: const { t, locale } = useI18n()
+
+========================================================================
+FILE: components/BlogCard.vue
+========================================================================
+-- function at line 66-74:
+  66| function formatDate(dateStr: string): string {
+  67|   const date = new Date(dateStr)
+  68|   if (isNaN(date.getTime())) return dateStr
+  69|   return date.toLocaleDateString(locale.value === 'zh' ? 'zh-CN' : 'en-US', {
+  70|     year: 'numeric',
+  71|     month: 'short',
+  72|     day: 'numeric',
+  73|   })
+  74| }
+-- call site line 15: {{ formatDate(post.date) }}
+-- useI18n line 40: const { locale } = useI18n()
+
+========================================================================
+FILE: components/BlogList.vue
+========================================================================
+-- function at line 56-64:
+  56| function formatDate(dateStr: string): string {
+  57|   const date = new Date(dateStr)
+  58|   if (isNaN(date.getTime())) return dateStr
+  59|   return date.toLocaleDateString(locale.value === 'zh' ? 'zh-CN' : 'en-US', {
+  60|     year: 'numeric',
+  61|     month: 'short',
+  62|     day: 'numeric',
+  63|   })
+  64| }
+-- call site line 11: {{ formatDate(post.date) }}
+-- useI18n line 37: const { t, locale } = useI18n()
+
+========================================================================
+FILE: components/ChangelogEntry.vue
+========================================================================
+-- function at line 36-44:
+  36| function formatDate(dateStr: string): string {
+  37|   const date = new Date(dateStr)
+  38|   if (isNaN(date.getTime())) return dateStr
+  39|   return date.toLocaleDateString(locale.value === 'zh' ? 'zh-CN' : 'en-US', {
+  40|     year: 'numeric',
+  41|     month: 'long',
+  42|     day: 'numeric',
+  43|   })
+  44| }
+-- call site line 7: {{ formatDate(entry.date) }}
+-- useI18n line 24: const { locale } = useI18n()
+
+========================================================================
+FILE: components/ProjectCard.vue
+========================================================================
+-- function at line 84-92:
+  84| function formatDate(dateStr: string): string {
+  85|   const date = new Date(dateStr)
+  86|   if (isNaN(date.getTime())) return dateStr
+  87|   return date.toLocaleDateString(locale.value === 'zh' ? 'zh-CN' : 'en-US', {
+  88|     year: 'numeric',
+  89|     month: 'short',
+  90|     day: 'numeric',
+  91|   })
+  92| }
+-- call site line 25: {{ formatDate(project.date) }}
+-- useI18n line 54: const { locale } = useI18n()
+
+========================================================================
+FILE: pages/blog/[slug].vue
+========================================================================
+-- function at line 75-83:
+  75| function formatDate(dateStr: string): string {
+  76|   const date = new Date(dateStr)
+  77|   if (isNaN(date.getTime())) return dateStr
+  78|   return date.toLocaleDateString(locale.value === 'zh' ? 'zh-CN' : 'en-US', {
+  79|     year: 'numeric',
+  80|     month: 'long',
+  81|     day: 'numeric',
+  82|   })
+  83| }
+-- call site line 28: {{ formatDate(page.date) }}
+-- useI18n line 55: const { t, locale } = useI18n()
+
+========================================================================
+FILE: pages/gallery/index.vue
+========================================================================
+-- function at line 49-55:
+  49| function formatDate(dateStr: string): string {
+  50|   const date = new Date(dateStr)
+  51|   if (isNaN(date.getTime())) return dateStr
+  52|   return date.toLocaleDateString(locale.value === 'zh' ? 'zh-CN' : 'en-US', {
+  53|     year: 'numeric', month: 'long', day: 'numeric',
+  54|   })
+  55| }
+-- call site line 21: <time v-if="photo.date" class="tabular-nums mt-1 block" style="font-size:12px; color:var(--text-3);">{{ formatDate(photo.date) }}</time>
+-- useI18n line 35: const { t, locale } = useI18n()
+
+========================================================================
+FILE: pages/projects/[slug].vue
+========================================================================
+-- function at line 96-104:
+  96| function formatDate(dateStr: string): string {
+  97|   const date = new Date(dateStr)
+  98|   if (isNaN(date.getTime())) return dateStr
+  99|   return date.toLocaleDateString(locale.value === 'zh' ? 'zh-CN' : 'en-US', {
+ 100|     year: 'numeric',
+ 101|     month: 'long',
+ 102|     day: 'numeric',
+ 103|   })
+ 104| }
+-- call site line 17: <time v-if="page?.date" class="tabular-nums text-sm" style="color:var(--text-3);">{{ formatDate(page.date) }}</time>
+-- useI18n line 75: const { t, locale } = useI18n()
+

@@ -1,0 +1,64 @@
+======================================================================
+FILE: components/ArchiveTimeline.vue
+======================================================================
+  useI18n@47: const { t, locale } = useI18n()
+  formatDate def: lines 60-67
+  't(' total usages (outside def): 1
+  'locale' total refs (outside def): 1
+
+======================================================================
+FILE: components/BlogCard.vue
+======================================================================
+  useI18n@40: const { locale } = useI18n()
+  formatDate def: lines 66-74
+  't(' total usages (outside def): 0
+  'locale' total refs (outside def): 2
+
+======================================================================
+FILE: components/BlogList.vue
+======================================================================
+  useI18n@37: const { t, locale } = useI18n()
+  formatDate def: lines 56-64
+  't(' total usages (outside def): 1
+  'locale' total refs (outside def): 1
+
+======================================================================
+FILE: components/ChangelogEntry.vue
+======================================================================
+  useI18n@24: const { locale } = useI18n()
+  formatDate def: lines 36-44
+  't(' total usages (outside def): 0
+  'locale' total refs (outside def): 1
+
+======================================================================
+FILE: components/ProjectCard.vue
+======================================================================
+  useI18n@54: const { locale } = useI18n()
+  formatDate def: lines 84-92
+  't(' total usages (outside def): 0
+  'locale' total refs (outside def): 1
+
+======================================================================
+FILE: pages/blog/[slug].vue
+======================================================================
+  useI18n@55: const { t, locale } = useI18n()
+  formatDate def: lines 75-83
+  't(' total usages (outside def): 5
+  'locale' total refs (outside def): 4
+
+======================================================================
+FILE: pages/gallery/index.vue
+======================================================================
+  useI18n@35: const { t, locale } = useI18n()
+  formatDate def: lines 49-55
+  't(' total usages (outside def): 5
+  'locale' total refs (outside def): 1
+
+======================================================================
+FILE: pages/projects/[slug].vue
+======================================================================
+  useI18n@75: const { t, locale } = useI18n()
+  formatDate def: lines 96-104
+  't(' total usages (outside def): 7
+  'locale' total refs (outside def): 5
+

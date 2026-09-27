@@ -1,0 +1,301 @@
+======================================================================
+FILE: utils/tags.ts
+======================================================================
+// Each category key maps to both Chinese and English tag values
+export const categoryTagMap: Record<string, string[]> = {
+  '经验总结': ['经验总结', 'Experience'],
+  '算法学习': ['算法学习', 'Algorithms'],
+  '作品分享': ['作品分享', 'Projects'],
+}
+
+======================================================================
+FILE: components/ArchiveTimeline.vue  (script 46-67)
+======================================================================
+  46| <script setup lang="ts">
+  47| const { t, locale } = useI18n()
+  48| const localePath = useLocalePath()
+  49| 
+  50| defineProps<{
+  51|   items: Array<{
+  52|     title: string
+  53|     description?: string
+  54|     date?: string
+  55|     tags?: string[]
+  56|     link: string
+  57|   }>
+  58| }>()
+  59| 
+  60| function formatDate(dateStr: string): string {
+  61|   const date = new Date(dateStr)
+  62|   if (isNaN(date.getTime())) return dateStr
+  63|   return date.toLocaleDateString(locale.value === 'zh' ? 'zh-CN' : 'en-US', {
+  64|     month: 'short',
+  65|     day: 'numeric',
+  66|   })
+  67| }
+  68| </script>
+
+======================================================================
+FILE: components/BlogCard.vue  (script 39-74)
+======================================================================
+  39| <script setup lang="ts">
+  40| const { locale } = useI18n()
+  41| const localePath = useLocalePath()
+  42| 
+  43| const props = defineProps<{
+  44|   post: Record<string, unknown> & {
+  45|     title: string
+  46|     description?: string
+  47|     date?: string
+  48|     tags?: string[]
+  49|     stem?: string
+  50|   }
+  51| }>()
+  52| 
+  53| const slug = computed(() => {
+  54|   const stem = props.post.stem || ''
+  55|   const parts = stem.split('/')
+  56|   return parts[parts.length - 1]
+  57| })
+  58| 
+  59| // 封面标签：优先用文章第一个标签，退回「文章 / Post」
+  60| const coverLabel = computed(() => {
+  61|   const t = props.post.tags?.[0]
+  62|   if (t) return t
+  63|   return locale.value === 'zh' ? '文章' : 'Post'
+  64| })
+  65| 
+  66| function formatDate(dateStr: string): string {
+  67|   const date = new Date(dateStr)
+  68|   if (isNaN(date.getTime())) return dateStr
+  69|   return date.toLocaleDateString(locale.value === 'zh' ? 'zh-CN' : 'en-US', {
+  70|     year: 'numeric',
+  71|     month: 'short',
+  72|     day: 'numeric',
+  73|   })
+  74| }
+  75| </script>
+
+======================================================================
+FILE: components/BlogList.vue  (script 36-64)
+======================================================================
+  36| <script setup lang="ts">
+  37| const { t, locale } = useI18n()
+  38| const localePath = useLocalePath()
+  39| 
+  40| defineProps<{
+  41|   posts: Array<{
+  42|     _path: string
+  43|     title: string
+  44|     description?: string
+  45|     date?: string
+  46|     tags?: string[]
+  47|   }>
+  48| }>()
+  49| 
+  50| function getSlug(path?: string): string {
+  51|   if (!path) return ''
+  52|   const parts = path.split('/')
+  53|   return parts[parts.length - 1]
+  54| }
+  55| 
+  56| function formatDate(dateStr: string): string {
+  57|   const date = new Date(dateStr)
+  58|   if (isNaN(date.getTime())) return dateStr
+  59|   return date.toLocaleDateString(locale.value === 'zh' ? 'zh-CN' : 'en-US', {
+  60|     year: 'numeric',
+  61|     month: 'short',
+  62|     day: 'numeric',
+  63|   })
+  64| }
+  65| </script>
+
+======================================================================
+FILE: components/ChangelogEntry.vue  (script 23-44)
+======================================================================
+  23| <script setup lang="ts">
+  24| const { locale } = useI18n()
+  25| 
+  26| defineProps<{
+  27|   entry: {
+  28|     title: string
+  29|     description?: string
+  30|     date: string
+  31|     version: string
+  32|     body?: unknown
+  33|   }
+  34| }>()
+  35| 
+  36| function formatDate(dateStr: string): string {
+  37|   const date = new Date(dateStr)
+  38|   if (isNaN(date.getTime())) return dateStr
+  39|   return date.toLocaleDateString(locale.value === 'zh' ? 'zh-CN' : 'en-US', {
+  40|     year: 'numeric',
+  41|     month: 'long',
+  42|     day: 'numeric',
+  43|   })
+  44| }
+  45| </script>
+
+======================================================================
+FILE: components/ProjectCard.vue  (script 53-92)
+======================================================================
+  53| <script setup lang="ts">
+  54| const { locale } = useI18n()
+  55| const localePath = useLocalePath()
+  56| 
+  57| const props = defineProps<{
+  58|   project: Record<string, unknown> & {
+  59|     title: string
+  60|     description?: string
+  61|     date?: string
+  62|     tags?: string[]
+  63|     thumbnail?: string
+  64|     demoUrl?: string
+  65|     sourceUrl?: string
+  66|     tech?: string[]
+  67|     type?: string
+  68|     stem?: string
+  69|   }
+  70| }>()
+  71| 
+  72| // 标签最多显示 4 个，其余折叠为 +N，避免卡片高度被标签行数带偏
+  73| const MAX_TECH = 4
+  74| const visibleTech = computed(() => (props.project.tech || []).slice(0, MAX_TECH))
+  75| const restTechCount = computed(() => Math.max(0, (props.project.tech?.length || 0) - MAX_TECH))
+  76| 
+  77| const link = computed(() => {
+  78|   const stem = props.project.stem || ''
+  79|   const parts = stem.split('/')
+  80|   const slug = parts[parts.length - 1]
+  81|   return `/projects/${slug}`
+  82| })
+  83| 
+  84| function formatDate(dateStr: string): string {
+  85|   const date = new Date(dateStr)
+  86|   if (isNaN(date.getTime())) return dateStr
+  87|   return date.toLocaleDateString(locale.value === 'zh' ? 'zh-CN' : 'en-US', {
+  88|     year: 'numeric',
+  89|     month: 'short',
+  90|     day: 'numeric',
+  91|   })
+  92| }
+  93| </script>
+
+======================================================================
+FILE: pages/blog/[slug].vue  (script 54-90)
+======================================================================
+  54| <script setup lang="ts">
+  55| const { t, locale } = useI18n()
+  56| const localePath = useLocalePath()
+  57| const route = useRoute()
+  58| const pageRoot = ref<HTMLElement>()
+  59| usePageAnimations(pageRoot)
+  60| 
+  61| const slug = computed(() => route.params.slug as string)
+  62| 
+  63| const { data: page } = await useAsyncData(
+  64|   `blog-${slug.value}-${locale.value}`,
+  65|   async () => {
+  66|     const result = await queryCollection('content')
+  67|       .where('path', '=', `/${locale.value}/blog/${slug.value}`)
+  68|       .limit(1)
+  69|       .all()
+  70|     return result[0] || null
+  71|   },
+  72|   { watch: [slug, locale] }
+  73| )
+  74| 
+  75| function formatDate(dateStr: string): string {
+  76|   const date = new Date(dateStr)
+  77|   if (isNaN(date.getTime())) return dateStr
+  78|   return date.toLocaleDateString(locale.value === 'zh' ? 'zh-CN' : 'en-US', {
+  79|     year: 'numeric',
+  80|     month: 'long',
+  81|     day: 'numeric',
+  82|   })
+  83| }
+  84| 
+  85| useHead({
+  86|   title: computed(() => page.value?.title || t('blog.title')),
+  87|   meta: [
+  88|     { name: 'description', content: computed(() => page.value?.description || t('blog.description')) },
+  89|   ],
+  90| })
+  91| </script>
+
+======================================================================
+FILE: pages/gallery/index.vue  (script 34-62)
+======================================================================
+  34| <script setup lang="ts">
+  35| const { t, locale } = useI18n()
+  36| const pageRoot = ref<HTMLElement>()
+  37| usePageAnimations(pageRoot)
+  38| 
+  39| const lightboxVisible = ref(false)
+  40| const lightboxSrc = ref('')
+  41| const lightboxAlt = ref('')
+  42| 
+  43| function openLightbox(src: string, alt: string) {
+  44|   lightboxSrc.value = src
+  45|   lightboxAlt.value = alt
+  46|   lightboxVisible.value = true
+  47| }
+  48| 
+  49| function formatDate(dateStr: string): string {
+  50|   const date = new Date(dateStr)
+  51|   if (isNaN(date.getTime())) return dateStr
+  52|   return date.toLocaleDateString(locale.value === 'zh' ? 'zh-CN' : 'en-US', {
+  53|     year: 'numeric', month: 'long', day: 'numeric',
+  54|   })
+  55| }
+  56| 
+  57| const { data: photos } = await useFetch('/api/photos')
+  58| 
+  59| useHead({
+  60|   title: t('gallery.title'),
+  61|   meta: [{ name: 'description', content: t('gallery.description') }],
+  62| })
+  63| </script>
+
+======================================================================
+FILE: pages/projects/[slug].vue  (script 74-109)
+======================================================================
+  74| <script setup lang="ts">
+  75| const { t, locale } = useI18n()
+  76| const localePath = useLocalePath()
+  77| const route = useRoute()
+  78| const pageRoot = ref<HTMLElement>()
+  79| usePageAnimations(pageRoot)
+  80| 
+  81| const slug = computed(() => route.params.slug as string)
+  82| 
+  83| const { data: page } = await useAsyncData(
+  84|   `project-${locale.value}-${slug.value}`,
+  85|   async () => {
+  86|     const result = await queryCollection('projects')
+  87|       // 路径带 locale 前缀(如 /zh/projects/sample-game), 与 i18n prefix 策略对齐
+  88|       .where('path', '=', `/${locale.value}/projects/${slug.value}`)
+  89|       .limit(1)
+  90|       .all()
+  91|     return result[0] || null
+  92|   },
+  93|   { watch: [slug, locale] }
+  94| )
+  95| 
+  96| function formatDate(dateStr: string): string {
+  97|   const date = new Date(dateStr)
+  98|   if (isNaN(date.getTime())) return dateStr
+  99|   return date.toLocaleDateString(locale.value === 'zh' ? 'zh-CN' : 'en-US', {
+ 100|     year: 'numeric',
+ 101|     month: 'long',
+ 102|     day: 'numeric',
+ 103|   })
+ 104| }
+ 105| 
+ 106| useHead({
+ 107|   title: computed(() => page.value?.title || t('projects.title')),
+ 108|   meta: [{ name: 'description', content: computed(() => page.value?.description || t('projects.description')) }],
+ 109| })
+ 110| </script>
+

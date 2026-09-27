@@ -16,7 +16,7 @@
       <span class="text-4xl">{{ project.type === 'game' ? '🎮' : '💻' }}</span>
     </div>
 
-    <div class="p-[18px]">
+    <div class="p-[18px] card-body">
       <div class="flex items-center gap-2 mb-3">
         <span v-if="project.type" class="tag-accent">
           {{ project.type }}
@@ -34,14 +34,17 @@
         {{ project.description }}
       </p>
 
-      <div v-if="project.tech?.length" class="flex flex-wrap gap-1.5">
+      <!-- 标签限量：最多 4 个，其余折叠为 +N
+           （v2 · 2026-09-19 标签过多会把卡片撑得比同排卡片高，导致高度参差） -->
+      <div v-if="visibleTech.length" class="flex flex-wrap gap-1.5">
         <span
-          v-for="t in project.tech"
+          v-for="t in visibleTech"
           :key="t"
           class="tag-plain"
         >
           {{ t }}
         </span>
+        <span v-if="restTechCount > 0" class="tag-plain">+{{ restTechCount }}</span>
       </div>
     </div>
   </NuxtLink>
@@ -65,6 +68,11 @@ const props = defineProps<{
     stem?: string
   }
 }>()
+
+// 标签最多显示 4 个，其余折叠为 +N，避免卡片高度被标签行数带偏
+const MAX_TECH = 4
+const visibleTech = computed(() => (props.project.tech || []).slice(0, MAX_TECH))
+const restTechCount = computed(() => Math.max(0, (props.project.tech?.length || 0) - MAX_TECH))
 
 const link = computed(() => {
   const stem = props.project.stem || ''

@@ -1,0 +1,92 @@
+=== components/ArchiveTimeline.vue ===
+-- def at line 60 (body 60-67):
+60: function formatDate(dateStr: string): string {
+61:   const date = new Date(dateStr)
+62:   if (isNaN(date.getTime())) return dateStr
+63:   return date.toLocaleDateString(locale.value === 'zh' ? 'zh-CN' : 'en-US', {
+64:     month: 'short',
+65:     day: 'numeric',
+66:   })
+67: }
+
+=== components/BlogCard.vue ===
+-- def at line 66 (body 66-74):
+66: function formatDate(dateStr: string): string {
+67:   const date = new Date(dateStr)
+68:   if (isNaN(date.getTime())) return dateStr
+69:   return date.toLocaleDateString(locale.value === 'zh' ? 'zh-CN' : 'en-US', {
+70:     year: 'numeric',
+71:     month: 'short',
+72:     day: 'numeric',
+73:   })
+74: }
+
+=== components/BlogList.vue ===
+-- def at line 56 (body 56-64):
+56: function formatDate(dateStr: string): string {
+57:   const date = new Date(dateStr)
+58:   if (isNaN(date.getTime())) return dateStr
+59:   return date.toLocaleDateString(locale.value === 'zh' ? 'zh-CN' : 'en-US', {
+60:     year: 'numeric',
+61:     month: 'short',
+62:     day: 'numeric',
+63:   })
+64: }
+
+=== components/ChangelogEntry.vue ===
+-- def at line 36 (body 36-44):
+36: function formatDate(dateStr: string): string {
+37:   const date = new Date(dateStr)
+38:   if (isNaN(date.getTime())) return dateStr
+39:   return date.toLocaleDateString(locale.value === 'zh' ? 'zh-CN' : 'en-US', {
+40:     year: 'numeric',
+41:     month: 'long',
+42:     day: 'numeric',
+43:   })
+44: }
+
+=== components/ProjectCard.vue ===
+-- def at line 84 (body 84-92):
+84: function formatDate(dateStr: string): string {
+85:   const date = new Date(dateStr)
+86:   if (isNaN(date.getTime())) return dateStr
+87:   return date.toLocaleDateString(locale.value === 'zh' ? 'zh-CN' : 'en-US', {
+88:     year: 'numeric',
+89:     month: 'short',
+90:     day: 'numeric',
+91:   })
+92: }
+
+=== pages/blog/[slug].vue ===
+-- def at line 75 (body 75-83):
+75: function formatDate(dateStr: string): string {
+76:   const date = new Date(dateStr)
+77:   if (isNaN(date.getTime())) return dateStr
+78:   return date.toLocaleDateString(locale.value === 'zh' ? 'zh-CN' : 'en-US', {
+79:     year: 'numeric',
+80:     month: 'long',
+81:     day: 'numeric',
+82:   })
+83: }
+
+=== pages/gallery/index.vue ===
+-- def at line 49 (body 49-55):
+49: function formatDate(dateStr: string): string {
+50:   const date = new Date(dateStr)
+51:   if (isNaN(date.getTime())) return dateStr
+52:   return date.toLocaleDateString(locale.value === 'zh' ? 'zh-CN' : 'en-US', {
+53:     year: 'numeric', month: 'long', day: 'numeric',
+54:   })
+55: }
+
+=== pages/projects/[slug].vue ===
+-- def at line 96 (body 96-104):
+96: function formatDate(dateStr: string): string {
+97:   const date = new Date(dateStr)
+98:   if (isNaN(date.getTime())) return dateStr
+99:   return date.toLocaleDateString(locale.value === 'zh' ? 'zh-CN' : 'en-US', {
+100:     year: 'numeric',
+101:     month: 'long',
+102:     day: 'numeric',
+103:   })
+104: }

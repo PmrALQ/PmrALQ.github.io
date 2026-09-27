@@ -1,0 +1,31 @@
+=== components/ArchiveTimeline.vue ===
+14:              {{ formatDate(item.date) }}
+60:function formatDate(dateStr: string): string {
+
+=== components/BlogCard.vue ===
+15:          {{ formatDate(post.date) }}
+66:function formatDate(dateStr: string): string {
+
+=== components/BlogList.vue ===
+11:          {{ formatDate(post.date) }}
+56:function formatDate(dateStr: string): string {
+
+=== components/ChangelogEntry.vue ===
+7:          {{ formatDate(entry.date) }}
+36:function formatDate(dateStr: string): string {
+
+=== components/ProjectCard.vue ===
+25:          {{ formatDate(project.date) }}
+84:function formatDate(dateStr: string): string {
+
+=== pages/blog/[slug].vue ===
+28:            {{ formatDate(page.date) }}
+75:function formatDate(dateStr: string): string {
+
+=== pages/gallery/index.vue ===
+21:          <time v-if="photo.date" class="tabular-nums mt-1 block" style="font-size:12px; color:var(--text-3);">{{ formatDate(photo.date) }}</time>
+49:function formatDate(dateStr: string): string {
+
+=== pages/projects/[slug].vue ===
+17:        <time v-if="page?.date" class="tabular-nums text-sm" style="color:var(--text-3);">{{ formatDate(page.date) }}</time>
+96:function formatDate(dateStr: string): string {

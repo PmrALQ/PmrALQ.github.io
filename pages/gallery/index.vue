@@ -18,7 +18,7 @@
         </div>
         <div class="p-4">
           <h3 class="truncate" style="font-size:15px; font-weight:600; letter-spacing:-0.01em; color:var(--text);">{{ photo.title }}</h3>
-          <time v-if="photo.date" class="tabular-nums mt-1 block" style="font-size:12px; color:var(--text-3);">{{ formatDate(photo.date) }}</time>
+          <time v-if="photo.date" class="tabular-nums mt-1 block" style="font-size:12px; color:var(--text-3);">{{ formatDate(photo.date, { month: 'long' }) }}</time>
         </div>
       </div>
     </div>
@@ -46,13 +46,17 @@ function openLightbox(src: string, alt: string) {
   lightboxVisible.value = true
 }
 
-function formatDate(dateStr: string): string {
-  const date = new Date(dateStr)
-  if (isNaN(date.getTime())) return dateStr
-  return date.toLocaleDateString(locale.value === 'zh' ? 'zh-CN' : 'en-US', {
-    year: 'numeric', month: 'long', day: 'numeric',
-  })
-}
+/*
+ * 原 formatDate 函数已抽离至 utils/date.ts（Nuxt 自动导入），
+ * 此处保留原始实现供回溯。
+ * function formatDate(dateStr: string): string {
+ *   const date = new Date(dateStr)
+ *   if (isNaN(date.getTime())) return dateStr
+ *   return date.toLocaleDateString(locale.value === 'zh' ? 'zh-CN' : 'en-US', {
+ *     year: 'numeric', month: 'long', day: 'numeric',
+ *   })
+ * }
+ */
 
 const { data: photos } = await useFetch('/api/photos')
 

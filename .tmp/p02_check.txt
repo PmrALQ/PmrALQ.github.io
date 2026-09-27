@@ -1,0 +1,76 @@
+==================================================================
+P0-2 只读检查报告  2026-09-27 17:43:23
+工作目录: D:\self_website
+==================================================================
+
+### 1) git status --short
+M components/ArchiveTimeline.vue
+ M components/BlogCard.vue
+ M components/BlogList.vue
+ M components/ChangelogEntry.vue
+ M components/ProjectCard.vue
+ M pages/blog/[slug].vue
+ M pages/gallery/index.vue
+ M pages/projects/[slug].vue
+?? .tmp/apply_fmt.py
+?? .tmp/apply_formatdate.py
+?? .tmp/controller_fmt.py
+?? .tmp/final_analysis.txt
+?? .tmp/final_fmt.py
+?? .tmp/final_probe.py
+?? .tmp/fix_changelog.py
+?? .tmp/fix_remaining.py
+?? .tmp/fixup_fmt.py
+?? .tmp/fmt_ctl.py
+?? .tmp/fmt_ctl2.py
+?? .tmp/health_check_fmt.py
+?? .tmp/p02_check.py
+?? .tmp/repair_nested.py
+?? .tmp/repair_p02.py
+?? .tmp/shapes.txt
+?? .tmp/typecheck_result.txt
+?? .tmp/verify_shapes.py
+
+### 2) git diff --stat
+components/ArchiveTimeline.vue | 24 ++++++++++++++----------
+ components/BlogCard.vue        | 23 ++++++++++++++---------
+ components/BlogList.vue        | 24 ++++++++++++++----------
+ components/ChangelogEntry.vue  | 23 +++++++++++++----------
+ components/ProjectCard.vue     | 25 +++++++++++++++----------
+ pages/blog/[slug].vue          | 24 ++++++++++++++----------
+ pages/gallery/index.vue        | 20 ++++++++++++--------
+ pages/projects/[slug].vue      | 24 ++++++++++++++----------
+ 8 files changed, 110 insertions(+), 77 deletions(-)
+[stderr] warning: in the working copy of 'components/ArchiveTimeline.vue', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/BlogCard.vue', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/BlogList.vue', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/ChangelogEntry.vue', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/ProjectCard.vue', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'pages/blog/[slug].vue', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'pages/gallery/index.vue', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'pages/projects/[slug].vue', LF will be replaced by CRLF the next time Git touches it
+
+### 3) 8 个目标文件注释块健康检查
+  [OK] components/ArchiveTimeline.vue: 注释块结构完好
+  [异常] components/BlogCard.vue: 注释块有 2 个 '*/' 结束符(行 [78, 79]),应仅 1 个
+  [OK] components/BlogList.vue: 注释块结构完好
+  [OK] components/ChangelogEntry.vue: 注释块结构完好
+  [异常] components/ProjectCard.vue: 注释块有 2 个 '*/' 结束符(行 [96, 97]),应仅 1 个
+  [OK] pages/blog/[slug].vue: 注释块结构完好
+  [OK] pages/gallery/index.vue: 注释块结构完好
+  [OK] pages/projects/[slug].vue: 注释块结构完好
+
+### 4) 全局 formatDate 出现位置(排除 .git/node_modules/.nuxt/.output/dist)
+  components\ArchiveTimeline.vue: formatDate x3  <-- 非 utils/date.ts 的 ACTIVE 定义
+  components\BlogCard.vue: formatDate x3  <-- 非 utils/date.ts 的 ACTIVE 定义
+  components\BlogList.vue: formatDate x3  <-- 非 utils/date.ts 的 ACTIVE 定义
+  components\ChangelogEntry.vue: formatDate x3  <-- 非 utils/date.ts 的 ACTIVE 定义
+  components\ProjectCard.vue: formatDate x4  <-- 非 utils/date.ts 的 ACTIVE 定义
+  pages\blog\[slug].vue: formatDate x3  <-- 非 utils/date.ts 的 ACTIVE 定义
+  pages\gallery\index.vue: formatDate x3  <-- 非 utils/date.ts 的 ACTIVE 定义
+  pages\projects\[slug].vue: formatDate x3  <-- 非 utils/date.ts 的 ACTIVE 定义
+  utils\date.ts: formatDate x1  <-- 非 utils/date.ts 的 ACTIVE 定义
+
+==================================================================
+结论: P0-2 仍需修复(存在结构问题)
+==================================================================

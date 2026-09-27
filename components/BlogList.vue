@@ -34,7 +34,7 @@
 </template>
 
 <script setup lang="ts">
-const { t, locale } = useI18n()
+const { t } = useI18n()
 const localePath = useLocalePath()
 
 defineProps<{
@@ -53,13 +53,17 @@ function getSlug(path?: string): string {
   return parts[parts.length - 1]
 }
 
-function formatDate(dateStr: string): string {
-  const date = new Date(dateStr)
-  if (isNaN(date.getTime())) return dateStr
-  return date.toLocaleDateString(locale.value === 'zh' ? 'zh-CN' : 'en-US', {
-    year: 'numeric',
-    month: 'short',
-    day: 'numeric',
-  })
-}
+/*
+ * 原 formatDate 函数已抽离至 utils/date.ts（Nuxt 自动导入），
+ * 此处保留原始实现供回溯。
+ * function formatDate(dateStr: string): string {
+ *   const date = new Date(dateStr)
+ *   if (isNaN(date.getTime())) return dateStr
+ *   return date.toLocaleDateString(locale.value === 'zh' ? 'zh-CN' : 'en-US', {
+ *     year: 'numeric',
+ *     month: 'short',
+ *     day: 'numeric',
+ *   })
+ * }
+ */
 </script>

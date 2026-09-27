@@ -51,7 +51,7 @@
 </template>
 
 <script setup lang="ts">
-const { locale } = useI18n()
+// const { locale } = useI18n() // 原仅服务于已抽离的 formatDate
 const localePath = useLocalePath()
 
 const props = defineProps<{
@@ -81,13 +81,17 @@ const link = computed(() => {
   return `/projects/${slug}`
 })
 
-function formatDate(dateStr: string): string {
-  const date = new Date(dateStr)
-  if (isNaN(date.getTime())) return dateStr
-  return date.toLocaleDateString(locale.value === 'zh' ? 'zh-CN' : 'en-US', {
-    year: 'numeric',
-    month: 'short',
-    day: 'numeric',
-  })
-}
+/*
+ * 原 formatDate 函数已抽离至 utils/date.ts（Nuxt 自动导入），
+ * 此处保留原始实现供回溯。
+ * function formatDate(dateStr: string): string {
+ * const date = new Date(dateStr)
+ * if (isNaN(date.getTime())) return dateStr
+ * return date.toLocaleDateString(locale.value === 'zh' ? 'zh-CN' : 'en-US', {
+ * year: 'numeric',
+ * month: 'short',
+ * day: 'numeric',
+ * })
+ * }
+ */
 </script>

@@ -4,7 +4,7 @@
       <div class="flex items-center gap-3 flex-wrap mb-3">
         <span class="tag-accent">{{ entry.version }}</span>
         <time class="tabular-nums text-sm" style="color:var(--text-3);">
-          {{ formatDate(entry.date) }}
+          {{ formatDate(entry.date, { month: 'long' }) }}
         </time>
       </div>
       <h3 style="font-size:17px; font-weight:600; letter-spacing:-0.01em; line-height:1.45; color:var(--text);">
@@ -33,13 +33,16 @@ defineProps<{
   }
 }>()
 
-function formatDate(dateStr: string): string {
-  const date = new Date(dateStr)
-  if (isNaN(date.getTime())) return dateStr
-  return date.toLocaleDateString(locale.value === 'zh' ? 'zh-CN' : 'en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  })
-}
+/*
+ * 原 formatDate 函数已抽离至 utils/date.ts（Nuxt 自动导入），此处保留原始实现仅供回溯。
+ * function formatDate(dateStr: string): string {
+ *   const date = new Date(dateStr)
+ *   if (isNaN(date.getTime())) return dateStr
+ *   return date.toLocaleDateString(locale.value === 'zh' ? 'zh-CN' : 'en-US', {
+ *     year: 'numeric',
+ *     month: 'long',
+ *     day: 'numeric',
+ *   })
+ * }
+ */
 </script>

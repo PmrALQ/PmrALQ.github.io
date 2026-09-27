@@ -1,0 +1,1 @@
+import{u as i}from"./C5IuwEoF.js";function u(e,n={}){const t=new Date(e);if(Number.isNaN(t.getTime()))return e;const{year:r=!0,month:a="short"}=n,o={day:"numeric",month:a};r&&(o.year="numeric");const c=i().locale.value;return t.toLocaleDateString(c==="zh"?"zh-CN":"en-US",o)}export{u as f};

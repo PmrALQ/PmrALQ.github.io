@@ -23,9 +23,9 @@
   },
   "archive": {
     "title": "归档",
-    "description": "按时间整理的所有文章",
+    "description": "按时间整理的文章与作品",
     "all": "全部",
-    "noPosts": "还没有文章，敬请期待！",
+    "noPosts": "还没有内容，敬请期待！",
     "categories": {
       "experience": "经验总结",
       "algorithm": "算法学习",

@@ -14,7 +14,7 @@
         <span v-if="page?.type" class="tag-accent">
           {{ page.type }}
         </span>
-        <time v-if="page?.date" class="tabular-nums text-sm" style="color:var(--text-3);">{{ formatDate(page.date) }}</time>
+        <time v-if="page?.date" class="tabular-nums text-sm" style="color:var(--text-3);">{{ formatDate(page.date, { month: 'long' }) }}</time>
       </div>
       <h1 style="font-size:clamp(27px,5vw,46px); font-weight:700; letter-spacing:-0.03em; line-height:1.1; color:var(--text);">
         {{ page?.title }}
@@ -84,7 +84,7 @@ const { data: page } = await useAsyncData(
   `project-${locale.value}-${slug.value}`,
   async () => {
     const result = await queryCollection('projects')
-      // 路径带 locale 前缀(如 /zh/projects/sample-game), 与 i18n prefix 策略对齐
+      // 路径带 locale 前缀(如 /zh/projects/skyask), 与 i18n prefix 策略对齐
       .where('path', '=', `/${locale.value}/projects/${slug.value}`)
       .limit(1)
       .all()
@@ -93,15 +93,19 @@ const { data: page } = await useAsyncData(
   { watch: [slug, locale] }
 )
 
-function formatDate(dateStr: string): string {
-  const date = new Date(dateStr)
-  if (isNaN(date.getTime())) return dateStr
-  return date.toLocaleDateString(locale.value === 'zh' ? 'zh-CN' : 'en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  })
-}
+/*
+ * 原 formatDate 函数已抽离至 utils/date.ts（Nuxt 自动导入），
+ * 此处保留原始实现供回溯。
+ * function formatDate(dateStr: string): string {
+ *   const date = new Date(dateStr)
+ *   if (isNaN(date.getTime())) return dateStr
+ *   return date.toLocaleDateString(locale.value === 'zh' ? 'zh-CN' : 'en-US', {
+ *     year: 'numeric',
+ *     month: 'long',
+ *     day: 'numeric',
+ *   })
+ * }
+ */
 
 useHead({
   title: computed(() => page.value?.title || t('projects.title')),

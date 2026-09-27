@@ -11,7 +11,7 @@
         <div class="flex-1 min-w-0">
           <div class="flex items-center gap-3 flex-wrap">
             <time class="tabular-nums text-xs font-semibold rounded-full px-2.5 py-0.5" style="color:var(--accent); background:rgba(0,113,227,0.08);">
-              {{ formatDate(item.date) }}
+              {{ formatDate(item.date, { year: false }) }}
             </time>
             <h3 style="font-size:17px; font-weight:600; letter-spacing:-0.01em; line-height:1.45; color:var(--text);" class="truncate">
               {{ item.title }}
@@ -44,7 +44,7 @@
 </template>
 
 <script setup lang="ts">
-const { t, locale } = useI18n()
+const { t } = useI18n()
 const localePath = useLocalePath()
 
 defineProps<{
@@ -57,12 +57,16 @@ defineProps<{
   }>
 }>()
 
-function formatDate(dateStr: string): string {
-  const date = new Date(dateStr)
-  if (isNaN(date.getTime())) return dateStr
-  return date.toLocaleDateString(locale.value === 'zh' ? 'zh-CN' : 'en-US', {
-    month: 'short',
-    day: 'numeric',
-  })
-}
+/*
+ * 原 formatDate 函数已抽离至 utils/date.ts（Nuxt 自动导入），
+ * 此处保留原始实现供回溯。
+ * function formatDate(dateStr: string): string {
+ *   const date = new Date(dateStr)
+ *   if (isNaN(date.getTime())) return dateStr
+ *   return date.toLocaleDateString(locale.value === 'zh' ? 'zh-CN' : 'en-US', {
+ *     month: 'short',
+ *     day: 'numeric',
+ *   })
+ * }
+ */
 </script>

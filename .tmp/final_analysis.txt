@@ -1,0 +1,183 @@
+written final_analysis.txt lines=183
+==================================
+FILE: components/ArchiveTimeline.vue
+========================================================================
+-- DEF body (lines 60-67):
+function formatDate(dateStr: string): string {
+  const date = new Date(dateStr)
+  if (isNaN(date.getTime())) return dateStr
+  return date.toLocaleDateString(locale.value === 'zh' ? 'zh-CN' : 'en-US', {
+    month: 'short',
+    day: 'numeric',
+  })
+}
+-- END DEF
+-- CALL line 14: |              {{ formatDate(item.date) }}|
+-- t/locale refs:
+   |     {{ t('archive.noPosts') }}
+   | const { t, locale } = useI18n()
+   |   return date.toLocaleDateString(locale.value === 'zh' ? 'zh-CN' : 'en-US', {
+
+
+========================================================================
+FILE: components/BlogCard.vue
+========================================================================
+-- DEF body (lines 66-74):
+function formatDate(dateStr: string): string {
+  const date = new Date(dateStr)
+  if (isNaN(date.getTime())) return dateStr
+  return date.toLocaleDateString(locale.value === 'zh' ? 'zh-CN' : 'en-US', {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+  })
+}
+-- END DEF
+-- CALL line 15: |          {{ formatDate(post.date) }}|
+-- t/locale refs:
+   | const { locale } = useI18n()
+   |   return locale.value === 'zh' ? '文章' : 'Post'
+   |   return date.toLocaleDateString(locale.value === 'zh' ? 'zh-CN' : 'en-US', {
+
+
+========================================================================
+FILE: components/BlogList.vue
+========================================================================
+-- DEF body (lines 56-64):
+function formatDate(dateStr: string): string {
+  const date = new Date(dateStr)
+  if (isNaN(date.getTime())) return dateStr
+  return date.toLocaleDateString(locale.value === 'zh' ? 'zh-CN' : 'en-US', {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+  })
+}
+-- END DEF
+-- CALL line 11: |          {{ formatDate(post.date) }}|
+-- t/locale refs:
+   |     {{ t('archive.noPosts') }}
+   | const { t, locale } = useI18n()
+   |   return date.toLocaleDateString(locale.value === 'zh' ? 'zh-CN' : 'en-US', {
+
+
+========================================================================
+FILE: components/ChangelogEntry.vue
+========================================================================
+-- DEF body (lines 36-44):
+function formatDate(dateStr: string): string {
+  const date = new Date(dateStr)
+  if (isNaN(date.getTime())) return dateStr
+  return date.toLocaleDateString(locale.value === 'zh' ? 'zh-CN' : 'en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  })
+}
+-- END DEF
+-- CALL line 7: |          {{ formatDate(entry.date) }}|
+-- t/locale refs:
+   | const { locale } = useI18n()
+   |   return date.toLocaleDateString(locale.value === 'zh' ? 'zh-CN' : 'en-US', {
+
+
+========================================================================
+FILE: components/ProjectCard.vue
+========================================================================
+-- DEF body (lines 84-92):
+function formatDate(dateStr: string): string {
+  const date = new Date(dateStr)
+  if (isNaN(date.getTime())) return dateStr
+  return date.toLocaleDateString(locale.value === 'zh' ? 'zh-CN' : 'en-US', {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+  })
+}
+-- END DEF
+-- CALL line 25: |          {{ formatDate(project.date) }}|
+-- t/locale refs:
+   | const { locale } = useI18n()
+   |   return date.toLocaleDateString(locale.value === 'zh' ? 'zh-CN' : 'en-US', {
+
+
+========================================================================
+FILE: pages/blog/[slug].vue
+========================================================================
+-- DEF body (lines 75-83):
+function formatDate(dateStr: string): string {
+  const date = new Date(dateStr)
+  if (isNaN(date.getTime())) return dateStr
+  return date.toLocaleDateString(locale.value === 'zh' ? 'zh-CN' : 'en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  })
+}
+-- END DEF
+-- CALL line 28: |            {{ formatDate(page.date) }}|
+-- t/locale refs:
+   |         ← {{ t('nav.home') }}
+   |         ← {{ t('nav.archive') }}
+   |         {{ t('home.noWorks') }}
+   | const { t, locale } = useI18n()
+   |   `blog-${slug.value}-${locale.value}`,
+   |       .where('path', '=', `/${locale.value}/blog/${slug.value}`)
+   |   { watch: [slug, locale] }
+   |   return date.toLocaleDateString(locale.value === 'zh' ? 'zh-CN' : 'en-US', {
+   |   title: computed(() => page.value?.title || t('blog.title')),
+   |     { name: 'description', content: computed(() => page.value?.description || t('blog.description')) },
+
+
+========================================================================
+FILE: pages/gallery/index.vue
+========================================================================
+-- DEF body (lines 49-55):
+function formatDate(dateStr: string): string {
+  const date = new Date(dateStr)
+  if (isNaN(date.getTime())) return dateStr
+  return date.toLocaleDateString(locale.value === 'zh' ? 'zh-CN' : 'en-US', {
+    year: 'numeric', month: 'long', day: 'numeric',
+  })
+}
+-- END DEF
+-- CALL line 21: |          <time v-if="photo.date" class="tabular-nums mt-1 block" style="font-size:12px; color:var(--text-3);">{{ formatDate(photo.date) }}</time>|
+-- t/locale refs:
+   |       <PageHero :title="t('gallery.title')" :description="t('gallery.description')" />
+   |       {{ t('gallery.noPhotos') }}
+   | const { t, locale } = useI18n()
+   |   return date.toLocaleDateString(locale.value === 'zh' ? 'zh-CN' : 'en-US', {
+   |   title: t('gallery.title'),
+   |   meta: [{ name: 'description', content: t('gallery.description') }],
+
+
+========================================================================
+FILE: pages/projects/[slug].vue
+========================================================================
+-- DEF body (lines 96-104):
+function formatDate(dateStr: string): string {
+  const date = new Date(dateStr)
+  if (isNaN(date.getTime())) return dateStr
+  return date.toLocaleDateString(locale.value === 'zh' ? 'zh-CN' : 'en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  })
+}
+-- END DEF
+-- CALL line 17: |        <time v-if="page?.date" class="tabular-nums text-sm" style="color:var(--text-3);">{{ formatDate(page.date) }}</time>|
+-- t/locale refs:
+   |       {{ t('projects.backToProjects') }}
+   |           <span class="text-xs font-medium ml-3" style="color:var(--text-3);">{{ t('projects.viewDemo') }}</span>
+   |           {{ t('projects.openFullscreen') }}
+   |       <h3 class="text-sm font-semibold mb-3 uppercase tracking-wider" style="color:var(--text);">{{ t('projects.techStack') }}</h3>
+   |         {{ t('projects.sourceCode') }}
+   | const { t, locale } = useI18n()
+   |   `project-${locale.value}-${slug.value}`,
+   |       // 路径带 locale 前缀(如 /zh/projects/sample-game), 与 i18n prefix 策略对齐
+   |       .where('path', '=', `/${locale.value}/projects/${slug.value}`)
+   |   { watch: [slug, locale] }
+   |   return date.toLocaleDateString(locale.value === 'zh' ? 'zh-CN' : 'en-US', {
+   |   title: computed(() => page.value?.title || t('projects.title')),
+   |   meta: [{ name: 'description', content: computed(() => page.value?.description || t('projects.description')) }],
+

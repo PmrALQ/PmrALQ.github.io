@@ -1,0 +1,112 @@
+##########################################################################
+FILE: components/ArchiveTimeline.vue
+total_lines: 68
+useI18n[47]: 'const { t, locale } = useI18n()'
+def_lines: [60]
+  -- def block (60..67):
+      60| 'function formatDate(dateStr: string): string {'
+      61| '  const date = new Date(dateStr)'
+      62| '  if (isNaN(date.getTime())) return dateStr'
+      63| "  return date.toLocaleDateString(locale.value === 'zh' ? 'zh-CN' : 'en-US', {"
+      64| "    month: 'short',"
+      65| "    day: 'numeric',"
+      66| '  })'
+      67| '}'
+
+##########################################################################
+FILE: components/BlogCard.vue
+total_lines: 75
+useI18n[40]: 'const { locale } = useI18n()'
+def_lines: [66]
+  -- def block (66..74):
+      66| 'function formatDate(dateStr: string): string {'
+      67| '  const date = new Date(dateStr)'
+      68| '  if (isNaN(date.getTime())) return dateStr'
+      69| "  return date.toLocaleDateString(locale.value === 'zh' ? 'zh-CN' : 'en-US', {"
+      70| "    year: 'numeric',"
+      71| "    month: 'short',"
+      72| "    day: 'numeric',"
+      73| '  })'
+      74| '}'
+
+##########################################################################
+FILE: components/BlogList.vue
+total_lines: 65
+useI18n[37]: 'const { t, locale } = useI18n()'
+def_lines: [56]
+  -- def block (56..64):
+      56| 'function formatDate(dateStr: string): string {'
+      57| '  const date = new Date(dateStr)'
+      58| '  if (isNaN(date.getTime())) return dateStr'
+      59| "  return date.toLocaleDateString(locale.value === 'zh' ? 'zh-CN' : 'en-US', {"
+      60| "    year: 'numeric',"
+      61| "    month: 'short',"
+      62| "    day: 'numeric',"
+      63| '  })'
+      64| '}'
+
+##########################################################################
+FILE: components/ChangelogComponent.vue
+  !! MISSING
+##########################################################################
+FILE: components/ProjectCard.vue
+total_lines: 93
+useI18n[54]: 'const { locale } = useI18n()'
+def_lines: [84]
+  -- def block (84..92):
+      84| 'function formatDate(dateStr: string): string {'
+      85| '  const date = new Date(dateStr)'
+      86| '  if (isNaN(date.getTime())) return dateStr'
+      87| "  return date.toLocaleDateString(locale.value === 'zh' ? 'zh-CN' : 'en-US', {"
+      88| "    year: 'numeric',"
+      89| "    month: 'short',"
+      90| "    day: 'numeric',"
+      91| '  })'
+      92| '}'
+
+##########################################################################
+FILE: pages/blog/[slug].vue
+total_lines: 91
+useI18n[55]: 'const { t, locale } = useI18n()'
+def_lines: [75]
+  -- def block (75..83):
+      75| 'function formatDate(dateStr: string): string {'
+      76| '  const date = new Date(dateStr)'
+      77| '  if (isNaN(date.getTime())) return dateStr'
+      78| "  return date.toLocaleDateString(locale.value === 'zh' ? 'zh-CN' : 'en-US', {"
+      79| "    year: 'numeric',"
+      80| "    month: 'long',"
+      81| "    day: 'numeric',"
+      82| '  })'
+      83| '}'
+
+##########################################################################
+FILE: pages/gallery/index.vue
+total_lines: 63
+useI18n[35]: 'const { t, locale } = useI18n()'
+def_lines: [49]
+  -- def block (49..55):
+      49| 'function formatDate(dateStr: string): string {'
+      50| '  const date = new Date(dateStr)'
+      51| '  if (isNaN(date.getTime())) return dateStr'
+      52| "  return date.toLocaleDateString(locale.value === 'zh' ? 'zh-CN' : 'en-US', {"
+      53| "    year: 'numeric', month: 'long', day: 'numeric',"
+      54| '  })'
+      55| '}'
+
+##########################################################################
+FILE: pages/projects/[slug].vue
+total_lines: 110
+useI18n[75]: 'const { t, locale } = useI18n()'
+def_lines: [96]
+  -- def block (96..104):
+      96| 'function formatDate(dateStr: string): string {'
+      97| '  const date = new Date(dateStr)'
+      98| '  if (isNaN(date.getTime())) return dateStr'
+      99| "  return date.toLocaleDateString(locale.value === 'zh' ? 'zh-CN' : 'en-US', {"
+     100| "    year: 'numeric',"
+     101| "    month: 'long',"
+     102| "    day: 'numeric',"
+     103| '  })'
+     104| '}'
+

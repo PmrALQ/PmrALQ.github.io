@@ -23,9 +23,9 @@
   },
   "archive": {
     "title": "Archive",
-    "description": "All articles organized by date",
+    "description": "Articles and works, organized by date",
     "all": "All",
-    "noPosts": "No posts yet — stay tuned!",
+    "noPosts": "Nothing here yet — stay tuned!",
     "categories": {
       "experience": "Experience",
       "algorithm": "Algorithms",

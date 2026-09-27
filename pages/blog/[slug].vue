@@ -25,7 +25,7 @@
         </h1>
         <div class="flex items-center gap-4 mt-4 text-sm" style="color:var(--text-3);">
           <time v-if="page?.date" :datetime="page.date" class="tabular-nums">
-            {{ formatDate(page.date) }}
+            {{ formatDate(page.date, { month: 'long' }) }}
           </time>
           <span v-if="page?.tags?.length" class="flex gap-2">
             <span
@@ -72,15 +72,19 @@ const { data: page } = await useAsyncData(
   { watch: [slug, locale] }
 )
 
-function formatDate(dateStr: string): string {
-  const date = new Date(dateStr)
-  if (isNaN(date.getTime())) return dateStr
-  return date.toLocaleDateString(locale.value === 'zh' ? 'zh-CN' : 'en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  })
-}
+/*
+ * 原 formatDate 函数已抽离至 utils/date.ts（Nuxt 自动导入），
+ * 此处保留原始实现供回溯。
+ * function formatDate(dateStr: string): string {
+ *   const date = new Date(dateStr)
+ *   if (isNaN(date.getTime())) return dateStr
+ *   return date.toLocaleDateString(locale.value === 'zh' ? 'zh-CN' : 'en-US', {
+ *     year: 'numeric',
+ *     month: 'long',
+ *     day: 'numeric',
+ *   })
+ * }
+ */
 
 useHead({
   title: computed(() => page.value?.title || t('blog.title')),
